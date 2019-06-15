@@ -136,7 +136,7 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/pb_routine_progress"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_emoji_frown" />
+                        app:srcCompat="@drawable/ic_frown" />
 
                 </android.support.constraint.ConstraintLayout>
 

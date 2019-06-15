@@ -14,10 +14,12 @@ open class BaseViewModel(mApplication: Application) : AndroidViewModel(mApplicat
     protected var mExecutors: AppExecutors? = App.getsExecutors()
     private val requestState = MutableLiveData<Int>()
 
-    val requestStateObserver: LiveData<Int> get() = requestState
-
     protected fun setRequestState(state: Int) {
         requestState.postValue(state)
+    }
+
+    fun getRequestStateObserver(): LiveData<Int> {
+        return requestState
     }
 
     companion object {

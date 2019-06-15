@@ -2,165 +2,140 @@ package com.eemf.sirgoingfar.routinechecker.dialog_fragments
 
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.os.Parcelable
-import android.text.Editable
-import android.text.TextUtils
-import android.text.TextWatcher
-import android.util.DisplayMetrics
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
 import android.widget.TimePicker
-
-import com.eemf.sirgoingfar.core.custom.CustomSpinnerArrayAdapter
-import com.eemf.sirgoingfar.core.utils.Constants
-import com.eemf.sirgoingfar.routinechecker.R
-
-import java.io.Serializable
-import java.util.ArrayList
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
-
-import butterknife.BindView
 import butterknife.ButterKnife
-
-import com.eemf.sirgoingfar.core.utils.Constants.MINIMUM_TITLE_TEXT
+import com.eemf.sirgoingfar.routinechecker.R
+import java.io.Serializable
 import java.lang.String.format
+import java.util.*
 
 class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeSetListener {
 
-   /* @BindView(R.id.tv_header_text)
-    internal var headerText: TextView? = null
+    /* @BindView(R.id.tv_header_text)
+     internal var headerText: TextView? = null
 
-    @BindView(R.id.et_activity_desc)
-    internal var activityDesc: EditText? = null
+     @BindView(R.id.et_activity_desc)
+     internal var activityDesc: EditText? = null
 
-    @BindView(R.id.tv_activity_time_from)
-    internal var timeFromView: TextView? = null
+     @BindView(R.id.tv_activity_time_from)
+     internal var timeFromView: TextView? = null
 
-    @BindView(R.id.tv_activity_time_to)
-    internal var timeToView: TextView? = null
+     @BindView(R.id.tv_activity_time_to)
+     internal var timeToView: TextView? = null
 
-    @BindView(R.id.spinner_priority)
-    internal var prioritySpinner: Spinner? = null
+     @BindView(R.id.spinner_priority)
+     internal var prioritySpinner: Spinner? = null
 
-    @BindView(R.id.btn_add_activity)
-    internal var btnAddActivity: Button? = null
+     @BindView(R.id.btn_add_activity)
+     internal var btnAddActivity: Button? = null
 
-    @BindView(R.id.btn_add_another_activity)
-    internal var btnAddAnother: Button? = null
+     @BindView(R.id.btn_add_another_activity)
+     internal var btnAddAnother: Button? = null
 
-    private var mCurrentActivity: TodoActivity? = null
-    private var mActivityId: Int = 0
-    private var selectedTime_from: Calendar? = null
-    private var selectedTime_to: Calendar? = null
-    private var selectedPriority: Int = 0
-    private var isTimeFromClicked: Boolean = false
-    private var is24Hour: Boolean = false
-    private var isEdit: Boolean = false
-    private var isTimeFromSet: Boolean = false
-    private var isTimeToSet: Boolean = false
-    private var title: String? = null
-    private var timePicker: TimePickerDialog? = null
-    private var mListener: OnSaveActivity? = null
-    private var mCurrentActivities: List<TodoActivity>? = null
-    private var mTodo: Todo? = null
+     private var mCurrentActivity: TodoActivity? = null
+     private var mActivityId: Int = 0
+     private var selectedTime_from: Calendar? = null
+     private var selectedTime_to: Calendar? = null
+     private var selectedPriority: Int = 0
+     private var isTimeFromClicked: Boolean = false
+     private var is24Hour: Boolean = false
+     private var isEdit: Boolean = false
+     private var isTimeFromSet: Boolean = false
+     private var isTimeToSet: Boolean = false
+     private var title: String? = null
+     private var timePicker: TimePickerDialog? = null
+     private var mListener: OnSaveActivity? = null
+     private var mCurrentActivities: List<TodoActivity>? = null
+     private var mTodo: Todo? = null
 
-    private//From and to cannot be equal
-    //Start/End time must not be within a specific activity's time frame/range
-    //within range
-    // from is within range
-    //to is within range
-    //ensure the second is zero
-    val activityObject: TodoActivity?
-        get() {
-            val description: String
-            val startTime: Date
-            val endTime: Date
+     private//From and to cannot be equal
+     //Start/End time must not be within a specific activity's time frame/range
+     //within range
+     // from is within range
+     //to is within range
+     //ensure the second is zero
+     val activityObject: TodoActivity?
+         get() {
+             val description: String
+             val startTime: Date
+             val endTime: Date
 
-            description = activityDesc!!.text.toString().trim { it <= ' ' }
-            if (TextUtils.isEmpty(description)) {
-                activityDesc!!.error = appCompatActivity.getString(R.string.text_title_cannot_be_empty)
-                return null
-            }
+             description = activityDesc!!.text.toString().trim { it <= ' ' }
+             if (TextUtils.isEmpty(description)) {
+                 activityDesc!!.error = appCompatActivity.getString(R.string.text_title_cannot_be_empty)
+                 return null
+             }
 
-            if (description.length < MINIMUM_TITLE_TEXT) {
-                activityDesc!!.error = appCompatActivity.getString(R.string.text_title_cannot_be_less_than) + " " + MINIMUM_TITLE_TEXT.toString() + " " + appCompatActivity.getString(R.string.text_characters)
-                return null
-            }
-            if (selectedTime_from == null) {
-                timeFromView!!.error = appCompatActivity.getString(R.string.text_set_start_time)
-                toast(appCompatActivity.getString(R.string.text_set_end_time))
-                return null
-            }
+             if (description.length < MINIMUM_TITLE_TEXT) {
+                 activityDesc!!.error = appCompatActivity.getString(R.string.text_title_cannot_be_less_than) + " " + MINIMUM_TITLE_TEXT.toString() + " " + appCompatActivity.getString(R.string.text_characters)
+                 return null
+             }
+             if (selectedTime_from == null) {
+                 timeFromView!!.error = appCompatActivity.getString(R.string.text_set_start_time)
+                 toast(appCompatActivity.getString(R.string.text_set_end_time))
+                 return null
+             }
 
-            if (selectedTime_to == null) {
-                timeToView!!.error = appCompatActivity.getString(R.string.text_end_time_must_be_set)
-                toast(appCompatActivity.getString(R.string.text_end_time_must_be_set))
-                return null
-            }
+             if (selectedTime_to == null) {
+                 timeToView!!.error = appCompatActivity.getString(R.string.text_end_time_must_be_set)
+                 toast(appCompatActivity.getString(R.string.text_end_time_must_be_set))
+                 return null
+             }
 
-            val from = selectedTime_from!!.timeInMillis
-            val to = selectedTime_to!!.timeInMillis
-            if (from >= to) {
-                timeFromView!!.error = appCompatActivity.getString(R.string.text_start_time_must_be_lesser_than_start_time)
-                timeToView!!.error = appCompatActivity.getString(R.string.text_end_time_must_be_more_than_start_time)
-                toast(appCompatActivity.getString(R.string.text_set_appropriate_time))
-                return null
-            }
-            var currentActivity_from: Long
-            var currentActivity_to: Long
-            for (activity in mCurrentActivities!!) {
+             val from = selectedTime_from!!.timeInMillis
+             val to = selectedTime_to!!.timeInMillis
+             if (from >= to) {
+                 timeFromView!!.error = appCompatActivity.getString(R.string.text_start_time_must_be_lesser_than_start_time)
+                 timeToView!!.error = appCompatActivity.getString(R.string.text_end_time_must_be_more_than_start_time)
+                 toast(appCompatActivity.getString(R.string.text_set_appropriate_time))
+                 return null
+             }
+             var currentActivity_from: Long
+             var currentActivity_to: Long
+             for (activity in mCurrentActivities!!) {
 
-                if (activity === mCurrentActivity)
-                    continue
+                 if (activity === mCurrentActivity)
+                     continue
 
-                currentActivity_from = activity.getStartTime().getTime()
-                currentActivity_to = activity.getEndTime().getTime()
+                 currentActivity_from = activity.getStartTime().getTime()
+                 currentActivity_to = activity.getEndTime().getTime()
 
-                if (from >= currentActivity_from && to <= currentActivity_to
-                        || from >= currentActivity_from && from <= currentActivity_to
-                        || to >= currentActivity_from && to <= currentActivity_to) {
-                    toast(appCompatActivity.getString(R.string.text_invalid_activity_time_range))
-                    return null
-                }
-            }
-            selectedTime_from!!.set(Calendar.SECOND, 0)
-            selectedTime_to!!.set(Calendar.SECOND, 0)
+                 if (from >= currentActivity_from && to <= currentActivity_to
+                         || from >= currentActivity_from && from <= currentActivity_to
+                         || to >= currentActivity_from && to <= currentActivity_to) {
+                     toast(appCompatActivity.getString(R.string.text_invalid_activity_time_range))
+                     return null
+                 }
+             }
+             selectedTime_from!!.set(Calendar.SECOND, 0)
+             selectedTime_to!!.set(Calendar.SECOND, 0)
 
-            startTime = selectedTime_from!!.time
-            endTime = selectedTime_to!!.time
+             startTime = selectedTime_from!!.time
+             endTime = selectedTime_to!!.time
 
-            if (selectedPriority < 0) {
-                toast("Select a priority level")
-                return null
-            }
+             if (selectedPriority < 0) {
+                 toast("Select a priority level")
+                 return null
+             }
 
-            if (isEdit) {
-                mCurrentActivity!!.setDescription(description)
-                mCurrentActivity!!.setStartTime(startTime)
-                mCurrentActivity!!.setEndTime(endTime)
-                mCurrentActivity!!.setPriority(selectedPriority)
+             if (isEdit) {
+                 mCurrentActivity!!.setDescription(description)
+                 mCurrentActivity!!.setStartTime(startTime)
+                 mCurrentActivity!!.setEndTime(endTime)
+                 mCurrentActivity!!.setPriority(selectedPriority)
 
-            } else {
-                mCurrentActivity = TodoActivity(description, startTime, endTime, Date(), mTodo!!.getId(),
-                        mTodo!!.getDate(), selectedPriority, Constants.Status.PENDING.id, null, mTodo!!.getFirebaseDbId(),
-                        prefs.nextAlarmId, AlarmStatus.PENDING.getStatusId())
-            }
+             } else {
+                 mCurrentActivity = TodoActivity(description, startTime, endTime, Date(), mTodo!!.getId(),
+                         mTodo!!.getDate(), selectedPriority, Constants.Status.PENDING.id, null, mTodo!!.getFirebaseDbId(),
+                         prefs.nextAlarmId, AlarmStatus.PENDING.getStatusId())
+             }
 
-            return mCurrentActivity
-        }*/
+             return mCurrentActivity
+         }*/
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_add_routine, container, false)
@@ -447,25 +422,25 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-       /* outState.putLong(Constants.ARG_TIME_FROM, selectedTime_from!!.timeInMillis)
-        outState.putLong(Constants.ARG_TIME_TO, selectedTime_to!!.timeInMillis)
+        /* outState.putLong(Constants.ARG_TIME_FROM, selectedTime_from!!.timeInMillis)
+         outState.putLong(Constants.ARG_TIME_TO, selectedTime_to!!.timeInMillis)
 
-        val title = activityDesc!!.text.toString().trim { it <= ' ' }
+         val title = activityDesc!!.text.toString().trim { it <= ' ' }
 
-        if (!TextUtils.isEmpty(title))
-            outState.putString(Constants.ARG_ACTIVITY_TITLE, title)
+         if (!TextUtils.isEmpty(title))
+             outState.putString(Constants.ARG_ACTIVITY_TITLE, title)
 
-        if (selectedPriority > 0)
-            outState.putInt(Constants.ARG_ACTIVITY_PRIORITY, selectedPriority)
+         if (selectedPriority > 0)
+             outState.putInt(Constants.ARG_ACTIVITY_PRIORITY, selectedPriority)
 
-        if (mListener != null)
-            outState.putSerializable(Constants.ARG_ACTIVITY_LISTENER, mListener)
+         if (mListener != null)
+             outState.putSerializable(Constants.ARG_ACTIVITY_LISTENER, mListener)
 
-        if (mCurrentActivities != null)
-            outState.putParcelableArrayList(Constants.ARG_CURRENT_ACTIVITIES, mCurrentActivities as ArrayList<out Parcelable>?)
+         if (mCurrentActivities != null)
+             outState.putParcelableArrayList(Constants.ARG_CURRENT_ACTIVITIES, mCurrentActivities as ArrayList<out Parcelable>?)
 
-        if (mTodo != null)
-            outState.putParcelable(Constants.ARG_CURRENT_TODO, mTodo)*/
+         if (mTodo != null)
+             outState.putParcelable(Constants.ARG_CURRENT_TODO, mTodo)*/
     }
 
     interface OnSaveActivity : Serializable {
@@ -474,7 +449,7 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
 
     companion object {
 
-        fun newInstance() : AddActivityDialogFragment{
+        fun newInstance(): AddActivityDialogFragment {
             val args = Bundle()
             val fragment = AddActivityDialogFragment()
             fragment.arguments = args

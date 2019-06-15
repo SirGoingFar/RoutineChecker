@@ -2,7 +2,9 @@ package com.eemf.sirgoingfar.core.utils
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.text.TextUtils
 import com.eemf.sirgoingfar.core.R
+import java.text.SimpleDateFormat
 import java.util.*
 
 object Helper {
@@ -76,5 +78,22 @@ object Helper {
         }
 
         return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, cal.timeInMillis)
+    }
+
+    fun getDateString(date: Date?): String? {
+        return DateUtil.parseDateLong("EEE, d MMM yyyy", date.time)
+    }
+
+    fun parseDateLong(patternString: String, timeInMillis: Long): String? {
+        if (TextUtils.isEmpty(patternString) || timeInMillis < 0) {
+            return null
+        }
+        val sdf = SimpleDateFormat(patternString, Locale.ENGLISH)
+        try {
+            return sdf.format(Date(timeInMillis))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
     }
 }

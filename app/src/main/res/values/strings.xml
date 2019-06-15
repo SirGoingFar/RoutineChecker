@@ -18,5 +18,10 @@
     <string name="mock_text_routine_freq_detail">Daily at 6:30AM</string>
     <string name="text_next_occurrence_elapse_time">Next in: <xliff:g example="59min, 59sec" id="next_occurrence_time">%s</xliff:g></string>
     <string name="text_empty_screen_detail_screen">There is no occurrence of this routine yet.</string>
+    <string name="text_empty_screen_routine_list">You have no routine added yet.\nAdd one by clicking on the ADD BUTTON</string>
     <string name="text_progress_status_emoji">progress_status_emoji</string>
+    <string name="text_done">DONE</string>
+    <string name="text_missed">MISSED</string>
+    <string name="mock_occurrence_date">Thurs, 24th May 2018</string>
+    <string name="text_done">DONE</string>
 </resources>
