@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircularProgressView">
+        <attr name="title" format="string" />
+        <attr name="percent" format="integer" />
+        <attr name="subtext" format="string" />
+        <attr name="thickness" format="dimension" />
+        <attr name="subtextSize" format="dimension" />
+        <attr name="percentTextSize" format="dimension" />
+        <attr name="titleTextSize" format="dimension" />
+        <attr name="progressColor" format="color" />
+        <attr name="subtextColor" format="color" />
+        <attr name="titleColor" format="color" />
+        <attr name="ringDiameter" format="dimension" />
+        <attr name="subtextMargin" format="integer" />
+    </declare-styleable>
+</resources>

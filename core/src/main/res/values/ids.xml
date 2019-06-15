@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="debug_textview" type="id" />
+    <item name="debug_status" type="id" />
+    <item name="ring_view" type="id" />
+</resources>

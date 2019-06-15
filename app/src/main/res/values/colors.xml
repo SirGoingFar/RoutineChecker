@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorPink">#FE104D</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlack_opacity_75">#BF000000</color>
+    <color name="colorWhite_opacity_75">#BFFFFFFF</color>
+    <color name="colorPrimaryDark_opacity_75">#BF23283A</color>
+
+    <!-- Progress Colors -->
+    <color name="colorCode1">#de7299</color>
+    <color name="colorCode2">#a670d2</color>
+    <color name="colorCode3">#fad960</color>
+    <color name="colorCode4">#f89939</color>
+    <color name="colorCode5">#4fe0df</color>
+    <color name="colorCode6">#53baf7</color>
+    <color name="colorCode7">#C86DD7</color>
+    <color name="colorCode8">#3023AE</color>
+    <color name="colorCode9">#53baf7</color>
+
+    <color name="colorGrey">#F0F0F0</color>
+    <color name="colorDirtyWhite">#f5f5f5</color>
+    <color name="colorGrey_1">#dadce0</color>
+
+    <!-- Category Colors -->
+    <color name="colorDone">#3bb373</color>
+    <color name="colorShifted">#ff9f00</color>
+    <color name="colorMissed">#d0021b</color>
+    <color name="colorBlack_transluscent">#80000000</color>
+    <color name="color_ghost_white">#f0f0f7</color>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="colorWhite_opacity50">#80FFFFFF</color>
+    <color name="colorWhite_opacity80">#CCFFFFFF</color>
+    <color name="colorWhite_opacity30">#4DFFFFFF</color>
+    <color name="colorGrey_32">#32000000</color>
+    <color name="colorRaven">#686c73</color>
+
+    <color name="colorDebugLabel">#ff3366</color>
+</resources>

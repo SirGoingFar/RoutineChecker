@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDirtyWhite">
+
+    <TextView
+        android:id="@+id/tv_header_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:elevation="@dimen/dimen_4dp"
+        android:fontFamily="sans-serif-regular"
+        android:gravity="center"
+        android:padding="@dimen/dimen_20dp"
+        android:text="@string/text_add_new_routine"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_header_text"
+        app:layout_constraintVertical_bias="0">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="40dp" />
+
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="40dp" />
+
+            <ImageView
+                android:id="@+id/iv_icon_title"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/icon_title"
+                android:src="@drawable/ic_title"
+                app:layout_constraintLeft_toRightOf="@+id/guideline1"
+                app:layout_constraintStart_toEndOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_routine_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:autofillHints="@string/text_title"
+                android:hint="@string/text_title"
+                android:inputType="textCapWords"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack_transluscent"
+                android:textSize="@dimen/text_16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_icon_title"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintLeft_toRightOf="@+id/iv_icon_desc"
+                app:layout_constraintRight_toLeftOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_desc"
+                app:layout_constraintTop_toTopOf="@+id/iv_icon_title" />
+
+            <ImageView
+                android:id="@+id/iv_icon_desc"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/icon_title"
+                android:src="@drawable/ic_create"
+                app:layout_constraintLeft_toRightOf="@+id/guideline1"
+                app:layout_constraintStart_toEndOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/et_routine_title" />
+
+            <EditText
+                android:id="@+id/et_routine_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:autofillHints="@string/text_description"
+                android:hint="@string/text_description"
+                android:inputType="textCapWords"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack_transluscent"
+                android:textSize="@dimen/text_16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_icon_desc"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintLeft_toRightOf="@+id/iv_icon_desc"
+                app:layout_constraintRight_toLeftOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_desc"
+                app:layout_constraintTop_toTopOf="@+id/iv_icon_desc" />
+
+            <ImageView
+                android:id="@+id/iv_icon_time"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/icon_title"
+                android:src="@drawable/ic_alarm_black"
+                app:layout_constraintEnd_toStartOf="@+id/tv_routine_start_time"
+                app:layout_constraintLeft_toRightOf="@+id/guideline1"
+                app:layout_constraintRight_toLeftOf="@+id/tv_routine_start_time"
+                app:layout_constraintStart_toEndOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/iv_icon_desc" />
+
+            <TextView
+                android:id="@+id/tv_routine_start_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:hint="@string/text_start_time"
+                android:paddingBottom="@dimen/dimen_2dp"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorBlack_transluscent"
+                android:textSize="@dimen/text_16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_icon_time"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintLeft_toRightOf="@+id/iv_icon_time"
+                app:layout_constraintRight_toLeftOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_time"
+                app:layout_constraintTop_toTopOf="@+id/iv_icon_time" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_8dp"
+                android:background="@color/colorBlack"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintLeft_toRightOf="@+id/iv_icon_time"
+                app:layout_constraintRight_toLeftOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_time"
+                app:layout_constraintTop_toBottomOf="@+id/tv_routine_start_time" />
+
+            <ImageView
+                android:id="@+id/iv_icon_freq"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/icon_title"
+                android:src="@drawable/ic_refresh"
+                app:layout_constraintEnd_toStartOf="@+id/tv_routine_start_time"
+                app:layout_constraintLeft_toRightOf="@+id/guideline1"
+                app:layout_constraintRight_toLeftOf="@+id/tv_routine_start_time"
+                app:layout_constraintStart_toEndOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/iv_icon_time" />
+
+            <Spinner
+                android:id="@+id/spinner_routine_freq"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="@dimen/dimen_25dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_icon_freq"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintLeft_toRightOf="@+id/guideline1"
+                app:layout_constraintRight_toLeftOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="@+id/iv_icon_freq" />
+
+            <Button
+                android:id="@+id/btn_add_routine"
+                style="@style/Button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="@dimen/dimen_4dp"
+                android:layout_marginRight="@dimen/dimen_4dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
+                android:text="@string/text_add"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_add_another_routine"
+                app:layout_constraintLeft_toRightOf="@+id/guideline1"
+                app:layout_constraintRight_toLeftOf="@+id/btn_add_another_routine"
+                app:layout_constraintStart_toEndOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_routine_freq"
+                app:layout_constraintVertical_bias="0" />
+
+            <Button
+                android:id="@+id/btn_add_another_routine"
+                style="@style/Button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_4dp"
+                android:layout_marginLeft="@dimen/dimen_4dp"
+                android:text="@string/add_another"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_add_routine"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintLeft_toRightOf="@+id/btn_add_routine"
+                app:layout_constraintRight_toLeftOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/btn_add_routine"
+                app:layout_constraintTop_toTopOf="@+id/btn_add_routine" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

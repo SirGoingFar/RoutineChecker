@@ -1,0 +1,72 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Base Button -->
+    <style name="BaseButton">
+        <item name="android:textSize">@dimen/text_14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">@dimen/dimen_4dp</item>
+        <item name="android:stateListAnimator">@anim/button_state_list_anim</item>
+        <item name="android:elevation">@dimen/dimen_2dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <!-- Button 1 style -->
+    <style name="Button_1" parent="BaseButton">
+        <item name="android:background">@drawable/bg_button_1</item>
+    </style>
+
+    <!--  Base Header Text -->
+    <style name="BaseText">
+        <item name="android:lineSpacingExtra">@dimen/dimen_4dp</item>
+    </style>
+
+    <!-- Base Header Style -->
+    <style name="BaseHeaderText" parent="BaseText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <!-- Base Summary Text -->
+    <style name="SummaryText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/dimen_8dp</item>
+        <item name="android:background">@drawable/bg_summary_text</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:lineSpacingExtra">@dimen/text_5sp</item>
+        <item name="android:padding">@dimen/dimen_8dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <!-- Empty State Screen -->
+    <style name="EmptyScreenText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorGrey_1</item>
+        <item name="android:textSize">@dimen/text_22sp</item>
+        <item name="android:padding">@dimen/dimen_16dp</item>
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+        <item name="android:lineSpacingExtra">@dimen/dimen_6dp</item>
+        <item name="android:layout_gravity">center_horizontal|center_vertical</item>
+    </style>
+
+</resources>

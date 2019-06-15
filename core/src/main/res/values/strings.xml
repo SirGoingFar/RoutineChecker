@@ -1,0 +1,4 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Routine Checker</string>
+    <string name="text_time"><xliff:g example="6" id="hour">%1d</xliff:g>:<xliff:g example="56" id="minute">%2d</xliff:g> <xliff:g example="PM" id="meridian">%s</xliff:g></string>
+</resources>

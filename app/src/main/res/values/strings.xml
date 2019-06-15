@@ -1,0 +1,22 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Routine Checker</string>
+    <string name="title_activity_routine_list">RoutineListActivity</string>
+    <string name="mock_routine_name">Fitness Run</string>
+    <string name="mock_routine_desc">Running within the estate for fitness</string>
+    <string name="mock_routine_time">3:30pm</string>
+    <string name="mock_routine_freq">WEEKLY</string>
+    <string name="menu_title_more">More</string>
+    <string name="text_add_routine">Add Routine</string>
+    <string name="text_next_up">Next Up</string>
+    <string name="text_add_new_routine">Add New Routine</string>
+    <string name="icon_title">icon_title</string>
+    <string name="text_title">Title</string>
+    <string name="text_add">Add</string>
+    <string name="add_another">Add another</string>
+    <string name="text_description">Description</string>
+    <string name="text_start_time">Start time</string>
+    <string name="mock_text_routine_freq_detail">Daily at 6:30AM</string>
+    <string name="text_next_occurrence_elapse_time">Next in: <xliff:g example="59min, 59sec" id="next_occurrence_time">%s</xliff:g></string>
+    <string name="text_empty_screen_detail_screen">There is no occurrence of this routine yet.</string>
+    <string name="text_progress_status_emoji">progress_status_emoji</string>
+</resources>
