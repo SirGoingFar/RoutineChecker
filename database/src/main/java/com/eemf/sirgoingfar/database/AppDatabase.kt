@@ -10,8 +10,6 @@ import android.content.Context
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract val dao: RoutineCheckerAppDao
-
     companion object {
         private val LOCK = Any()
         private val DATABASE_NAME = "routine_app_db"
@@ -29,4 +27,6 @@ abstract class AppDatabase : RoomDatabase() {
             return sInstance
         }
     }
+
+    abstract val dao: RoutineCheckerAppDao
 }

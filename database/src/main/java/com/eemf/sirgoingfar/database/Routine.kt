@@ -28,6 +28,7 @@ class Routine() : Parcelable {
         name = parcel.readString()
         desc = parcel.readString()
         freqId = parcel.readInt()
+        date = Date(parcel.readLong())
     }
 
     constructor(id: Int, name: String?, desc: String?, freqId: Int, date: Date?) : this() {
@@ -51,6 +52,7 @@ class Routine() : Parcelable {
         parcel.writeString(name)
         parcel.writeString(desc)
         parcel.writeInt(freqId)
+        parcel.writeLong(date?.time ?: 0)
     }
 
     override fun describeContents(): Int {

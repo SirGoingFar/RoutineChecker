@@ -1,4 +1,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Routine Checker</string>
-    <string name="text_time"><xliff:g example="6" id="hour">%1d</xliff:g>:<xliff:g example="56" id="minute">%2d</xliff:g> <xliff:g example="PM" id="meridian">%s</xliff:g></string>
+    <string name="text_time"><xliff:g example="6" id="hour">%1d</xliff:g>:<xliff:g example="56" id="minute">%1s</xliff:g> <xliff:g example="PM" id="meridian">%2s</xliff:g></string>
+    <string name="text_unavailable">Unavailable</string>
+    <string name="routine_detail_text"><xliff:g example="Weekly" id="Freq">%1s</xliff:g> at <xliff:g example="6:45 PM" id="time">%2s</xliff:g></string>
+    <string name="routine_next_occurrence_text">Up next in <xliff:g example="1 day, 23hr, 16mins" id="time">%s</xliff:g></string>
 </resources>
