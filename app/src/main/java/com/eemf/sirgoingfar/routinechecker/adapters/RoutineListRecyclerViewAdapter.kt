@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.eemf.sirgoingfar.core.utils.Helper
 import com.eemf.sirgoingfar.database.Routine
 import com.eemf.sirgoingfar.routinechecker.R
+import java.util.*
 
 class RoutineListRecyclerViewAdapter(private val mContext: Context, private val mListener: OnRoutineClickListener) :
         RecyclerView.Adapter<RoutineListRecyclerViewAdapter.ViewHolder>() {
@@ -22,18 +24,17 @@ class RoutineListRecyclerViewAdapter(private val mContext: Context, private val 
     }
 
     override fun getItemCount(): Int {
-//        return mDataList.size
-        return 10
+        return mDataList.size
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, viewType: Int) {
-        /*val currentItem: Routine = viewHolder.currentItem()
+        val currentItem: Routine = viewHolder.currentItem()
 
         viewHolder.tvRoutineName?.text = currentItem.name
         viewHolder.tvRoutineDesc?.text = currentItem.desc
         viewHolder.tvRoutineTime?.text = Helper.getTimeStringFromDate(mContext, currentItem.date)
         viewHolder.tvRoutineFreq?.text = Helper.getFreqById(currentItem.freqId)?.label ?: ""
-        viewHolder.cvContainer?.setOnClickListener { mListener.onRoutineClick(viewHolder.adapterPosition, currentItem) }*/
+        viewHolder.cvContainer?.setOnClickListener { mListener.onRoutineClick(viewHolder.adapterPosition, currentItem) }
     }
 
     fun setData(data: ArrayList<Routine>?) {
@@ -69,6 +70,11 @@ class RoutineListRecyclerViewAdapter(private val mContext: Context, private val 
 
         init {
             ButterKnife.bind(this, itemView)
+            tvRoutineName = itemView.findViewById(R.id.tv_routine_name)
+            tvRoutineDesc = itemView.findViewById(R.id.tv_routine_desc)
+            tvRoutineTime = itemView.findViewById(R.id.tv_routine_time)
+            tvRoutineFreq = itemView.findViewById(R.id.tv_routine_freq)
+            cvContainer = itemView.findViewById(R.id.container)
         }
 
         fun currentItem(): Routine {

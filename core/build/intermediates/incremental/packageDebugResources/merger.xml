@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3" xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res"/><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/build/generated/res/rs/debug"/><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res"><file name="progress_bar_custom" path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/drawable/progress_bar_custom.xml" qualifiers="" type="drawable"/><file name="dialog_progress_bar" path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/layout/dialog_progress_bar.xml" qualifiers="" type="layout"/><file path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/values/colors.xml" qualifiers=""><color name="colorBlack_transluscent">#80000000</color><color name="colorBlack">#000000</color></file><file path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/values/dimens.xml" qualifiers=""><dimen name="text_12sp">12sp</dimen><dimen name="dimen_4dp">4dp</dimen><dimen name="dimen_5dp">5dp</dimen><dimen name="dimen_6dp">6dp</dimen><dimen name="dimen_2dp">2dp</dimen><dimen name="dimen_18sp">18sp</dimen><dimen name="dimen_20dp">20dp</dimen><dimen name="padding_textview_small">4dp</dimen><dimen name="dimen_48dp">48dp</dimen><dimen name="dimen_16sp">16sp</dimen><dimen name="dimen_14sp">14sp</dimen><dimen name="text_14sp">14sp</dimen><dimen name="text_16sp">16sp</dimen><dimen name="dimen_12sp">12sp</dimen><dimen name="float_4">4</dimen><dimen name="float_2">2</dimen><dimen name="dimen_40dp">40dp</dimen><dimen name="dimen_60dp">60dp</dimen><dimen name="dimen_250dp">250dp</dimen><dimen name="toolbar_title_left_margin">16dp</dimen><dimen name="dimen_8dp">8dp</dimen><dimen name="dimen_16dp">16dp</dimen><dimen name="text_32sp">32sp</dimen><dimen name="dimen_24dp">24dp</dimen><dimen name="text_24sp">24sp</dimen><dimen name="dimen_300dp">300dp</dimen><dimen name="dimen_270dp">270dp</dimen><dimen name="dimen_10dp">10dp</dimen><dimen name="fab_elevation">6dp</dimen><dimen name="text_20sp">20sp</dimen><dimen name="dimen_3dp">3dp</dimen><dimen name="text_5sp">5sp</dimen><dimen name="dimen_30dp">30dp</dimen><dimen name="dimen_32dp">32dp</dimen><dimen name="text_18sp">18sp</dimen><dimen name="dimen_160dp">160dp</dimen><dimen name="text_40sp">40sp</dimen><dimen name="text_36sp">36sp</dimen><dimen name="dimen_1dp">1dp</dimen><dimen name="text_22sp">22sp</dimen><dimen name="dimen_7dp">7dp</dimen><dimen name="dimen_50dp">50dp</dimen><dimen name="dimen_25dp">25dp</dimen><dimen name="dimen_100dp">100dp</dimen><dimen name="fab_margin">16dp</dimen><dimen name="dimen_150dp">150dp</dimen><dimen name="text_30sp">30sp</dimen><dimen name="dimen_90dp">90dp</dimen><dimen name="text_4">4sp</dimen><dimen name="widget_margin">8dp</dimen><dimen name="dimen_200dp">200dp</dimen><dimen name="dimen_70dp">70dp</dimen></file><file path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/values/arrays.xml" qualifiers=""><integer-array name="progress_color_codes">
+        <item>@color/colorCode1</item>
+        <item>@color/colorCode2</item>
+        <item>@color/colorCode3</item>
+        <item>@color/colorCode4</item>
+        <item>@color/colorCode5</item>
+        <item>@color/colorCode6</item>
+        <item>@color/colorCode7</item>
+        <item>@color/colorCode8</item>
+        <item>@color/colorCode9</item>
+    </integer-array></file><file path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/values/strings.xml" qualifiers=""><string name="app_name">Routine Checker</string><string name="text_time"><ns1:g example="6" id="hour">%1d</ns1:g>:<ns1:g example="56" id="minute">%1s</ns1:g> <ns1:g example="PM" id="meridian">%2s</ns1:g></string><string name="text_unavailable">Unavailable</string><string name="routine_detail_text"><ns1:g example="Weekly" id="Freq">%1s</ns1:g> at <ns1:g example="6:45 PM" id="time">%2s</ns1:g></string><string name="routine_next_occurrence_text">Up next in <ns1:g example="1 day, 23hr, 16mins" id="time">%s</ns1:g></string></file><file path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/values/attrs.xml" qualifiers=""><declare-styleable name="CircularProgressView">
+        <attr format="string" name="title"/>
+        <attr format="integer" name="percent"/>
+        <attr format="string" name="subtext"/>
+        <attr format="dimension" name="thickness"/>
+        <attr format="dimension" name="subtextSize"/>
+        <attr format="dimension" name="percentTextSize"/>
+        <attr format="dimension" name="titleTextSize"/>
+        <attr format="color" name="progressColor"/>
+        <attr format="color" name="subtextColor"/>
+        <attr format="color" name="titleColor"/>
+        <attr format="dimension" name="ringDiameter"/>
+        <attr format="integer" name="subtextMargin"/>
+    </declare-styleable></file><file path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/main/res/values/ids.xml" qualifiers=""><item name="debug_textview" type="id"/><item name="debug_status" type="id"/><item name="ring_view" type="id"/></file></source><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/build/generated/res/rs/debug"/><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/core/src/debug/res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CircularProgressView">
+        <attr format="string" name="title"/>
+        <attr format="integer" name="percent"/>
+        <attr format="string" name="subtext"/>
+        <attr format="dimension" name="thickness"/>
+        <attr format="dimension" name="subtextSize"/>
+        <attr format="dimension" name="percentTextSize"/>
+        <attr format="dimension" name="titleTextSize"/>
+        <attr format="color" name="progressColor"/>
+        <attr format="color" name="subtextColor"/>
+        <attr format="color" name="titleColor"/>
+        <attr format="dimension" name="ringDiameter"/>
+        <attr format="integer" name="subtextMargin"/>
+    </declare-styleable></configuration></mergedItems></merger>

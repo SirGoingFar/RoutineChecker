@@ -25,7 +25,7 @@
                 android:layout_height="@dimen/dimen_300dp"
                 android:padding="@dimen/dimen_16dp"
                 app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
-                app:contentScrim="@color/colorPrimaryDark"
+                app:contentScrim="@drawable/bg_appbar"
                 app:expandedTitleMarginStart="@dimen/toolbar_title_left_margin"
                 app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">

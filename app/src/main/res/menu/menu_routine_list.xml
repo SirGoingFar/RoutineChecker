@@ -16,7 +16,7 @@
                 app:showAsAction="never" />
 
             <item
-                android:id="@+id/action_logout"
+                android:id="@+id/action_next_up"
                 android:icon="@drawable/ic_chevron_right_black"
                 android:orderInCategory="3"
                 android:title="@string/text_next_up"

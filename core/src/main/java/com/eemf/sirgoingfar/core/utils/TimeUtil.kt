@@ -15,52 +15,77 @@ object TimeUtil {
         if (diff < VALUE_0)
             throw IllegalArgumentException("Time difference can't be NEGATIVE")
 
-        val secondsInMilli: Long = 1000
-        val minutesInMilli = secondsInMilli * 60
-        val hoursInMilli = minutesInMilli * 60
-        val daysInMilli = hoursInMilli * 24
+        val secondsInMillis: Long = 1000
+        val minutesInMillis = secondsInMillis * 60
+        val hoursInMillis = minutesInMillis * 60
+        val daysInMillis = hoursInMillis * 24
+        val weeksInMillis = daysInMillis * 7
+        val monthInMillis = weeksInMillis * 4
+        val yearInMillis = monthInMillis * 12
 
-        val elapsedDays = diff / daysInMilli
-        diff = diff % daysInMilli
+        val elapsedYears = diff / yearInMillis
+        diff %= yearInMillis
 
-        val elapsedHours = diff / hoursInMilli
-        diff = diff % hoursInMilli
+        val elapsedMonths = diff / monthInMillis
+        diff %= monthInMillis
 
-        val elapsedMinutes = diff / minutesInMilli
-        diff = diff % minutesInMilli
+        val elapsedWeeks = diff / weeksInMillis
+        diff %= weeksInMillis
 
-        val elapsedSeconds = diff / secondsInMilli
+        val elapsedDays = diff / daysInMillis
+        diff %= daysInMillis
+
+        val elapsedHours = diff / hoursInMillis
+        diff %= hoursInMillis
+
+        val elapsedMinutes = diff / minutesInMillis
+        diff %= minutesInMillis
+
+        val elapsedSeconds = diff / secondsInMillis
 
         //resolve duration
         var duration = ""
 
+        if (elapsedYears > 0) {
+            duration += elapsedYears.toString()
+            duration += "y "
+        }
+
+        if (elapsedMonths > 0) {
+            duration += elapsedMonths.toString()
+            duration += "m "
+        }
+
+        if (elapsedWeeks > 0) {
+            duration += elapsedWeeks.toString()
+            duration += "w "
+        }
+
         if (elapsedDays > 0) {
-            duration = duration + elapsedDays.toString()
-            duration = duration + "d "
+            duration += elapsedDays.toString()
+            duration += "d "
         }
 
         if (elapsedHours > 0) {
-            duration = duration + elapsedHours.toString()
-            duration = duration + "h "
+            duration += elapsedHours.toString()
+            duration += "h "
         }
 
         if (elapsedMinutes > 0) {
-            duration = duration + elapsedMinutes.toString()
-            duration = duration + "m "
+            duration += elapsedMinutes.toString()
+            duration += "m "
         }
 
         if (elapsedSeconds > 0) {
-            duration = duration + elapsedSeconds.toString()
-            duration = duration + "s"
+            duration += elapsedSeconds.toString()
+            duration += "s"
         }
 
         return duration.trim { it <= ' ' }
     }
 
     fun getTimeRange(context: Context, start: Long, end: Long): String {
-
         validateIllegalArgument(start, end)
-
         return DateUtils.formatDateRange(context, start, end, DateUtils.FORMAT_SHOW_TIME)
     }
 
