@@ -9,7 +9,6 @@ import com.eemf.sirgoingfar.core.utils.Constants
 import com.eemf.sirgoingfar.core.utils.Helper
 import com.eemf.sirgoingfar.core.utils.ParcelableUtil
 import com.eemf.sirgoingfar.database.AppDatabase
-import com.eemf.sirgoingfar.database.Routine
 import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.R
 import com.eemf.sirgoingfar.routinechecker.activities.RoutineListActivity
@@ -17,10 +16,7 @@ import com.eemf.sirgoingfar.routinechecker.jobs.SimulatedJob
 import com.eemf.sirgoingfar.routinechecker.notification.NotificationHelper
 import com.eemf.sirgoingfar.routinechecker.notification.NotificationParam
 import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class AlarmReceiver : BroadcastReceiver() {
 
@@ -40,20 +36,15 @@ class AlarmReceiver : BroadcastReceiver() {
         param.body = getNotifBody(context, occurrence)
         param.priorityType = NotificationCompat.PRIORITY_HIGH
         param.isDismissable = true
-        param.btnOneText = context.getString(R.string.text_push_btn_one_label)
-        param.btnOnePendingIntent = getStopRingtonePendingIntent(context, occurrence.alarmId)
-        param.btnTwoText = context.getString(R.string.text_push_btn_two_label)
-        param.btnTwoPendingIntent = getRoutineUpdatePendingIntent(context, occurrence)
+        param.btnOneText = context.getString(R.string.text_push_btn_two_label)
+        param.btnOnePendingIntent = getRoutineUpdatePendingIntent(context, occurrence)
         param.bodyPendingIntent = getLaunchAppPendingIntent(context, occurrence.alarmId)
         param.isAutoCancel = true
         notifHelper.notifyUser(param)
 
-        //ring tone
-        context.startService(getStartRingtoneIntent(context))
 
         runBlocking {
-            launch(Dispatchers.IO) {
-
+            val job = GlobalScope.launch(Dispatchers.Default) {
                 delay(Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS.toLong())
 
                 //update Routines's Status and update the database
@@ -69,18 +60,13 @@ class AlarmReceiver : BroadcastReceiver() {
                 //start Simulated Job
                 SimulatedJob(context, currentOccurrence!!).runJob()
             }
+            job.join()
         }
     }
 
     private fun getNotifBody(context: Context, occurrence: RoutineOccurrence): String {
         return context.getString(R.string.notif_body, occurrence.name, occurrence.desc,
                 Helper.getTimeStringFromDate(context, occurrence.occurrenceDate))
-    }
-
-    private fun getStopRingtonePendingIntent(context: Context, alarmId: Int): PendingIntent {
-        val intent = Intent(context, NotificationActionService::class.java)
-        intent.action = NotificationActionService.ACTION_STOP_RINGTONE
-        return PendingIntent.getService(context, alarmId, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     private fun getRoutineUpdatePendingIntent(context: Context, occurrence: RoutineOccurrence): PendingIntent {
@@ -93,12 +79,6 @@ class AlarmReceiver : BroadcastReceiver() {
 
     private fun getLaunchAppPendingIntent(context: Context, alarmId: Int): PendingIntent {
         return PendingIntent.getActivity(context, alarmId, Intent(context, RoutineListActivity::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
-    }
-
-    private fun getStartRingtoneIntent(context: Context): Intent {
-        val intent = Intent(context, NotificationActionService::class.java)
-        intent.action = NotificationActionService.ACTION_START_RINGTONE
-        return intent
     }
 
     companion object {
