@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -53,6 +55,15 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
             rv_rountine_list?.isFocusable = true
             rv_rountine_list?.clipToPadding = false
             rv_rountine_list?.adapter = adapter
+            ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
+                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    deleteRoutine(viewHolder.adapterPosition)
+                }
+            }).attachToRecyclerView(rv_rountine_list)
         }
 
         fun refreshPage(routineList: List<Routine>) {
@@ -120,6 +131,14 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
         }
     }
 
+    private fun deleteRoutine(index: Int) {
+        createAlertDialog(getString(R.string.text_delete_routine))
+                .setNegativeButton(getString(R.string.alert_dialog_negative_button_label)) { dialog, which -> refreshPage(model.getCurrentRoutineList()) }
+                .setPositiveButton(getString(R.string.alert_dialog_positive_button_label)) { dialog, which ->
+                    model.deleteRoutine(index)
+                }.create().show()
+    }
+
 
     inner class Model {
 
@@ -167,6 +186,10 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
         fun getCurrentRoutineList(): List<Routine> {
             return mRoutineList!!
+        }
+
+        fun deleteRoutine(index: Int) {
+            mViewModel.deleteRoutine(mRoutineList!![index])
         }
     }
 

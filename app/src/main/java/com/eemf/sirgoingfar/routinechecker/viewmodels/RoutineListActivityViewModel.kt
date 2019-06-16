@@ -60,4 +60,10 @@ class RoutineListActivityViewModel(mApplication: Application, private val lifecy
         }
     }
 
+    fun deleteRoutine(routine: Routine) {
+        mExecutors?.diskIO()?.execute {
+            mDb?.dao?.deleteRoutine(routine)
+        }
+    }
+
 }

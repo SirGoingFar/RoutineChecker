@@ -32,4 +32,7 @@ interface RoutineCheckerAppDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateOccurrence(currentOccurrence: RoutineOccurrence)
+
+    @Delete
+    fun deleteRoutine(routine: Routine)
 }
