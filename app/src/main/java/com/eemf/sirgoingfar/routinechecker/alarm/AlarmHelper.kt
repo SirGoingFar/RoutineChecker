@@ -67,6 +67,11 @@ class AlarmHelper {
 
         if (Helper.hasTimePassed(occurrence?.occurrenceDate!!)) {
             occurrence.occurrenceDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
+
+            if (occurrence.freqId == Frequency.HOURLY.id) {
+                val cal: Calendar = Calendar.getInstance()
+                cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
+            }
         }
 
         val pendingIntent = getPendingIntentFor(occurrence, isUpdate)

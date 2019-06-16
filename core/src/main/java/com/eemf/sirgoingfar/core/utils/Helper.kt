@@ -2,7 +2,6 @@ package com.eemf.sirgoingfar.core.utils
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.os.Parcelable
 import android.text.TextUtils
 import com.eemf.sirgoingfar.core.R
 import java.text.SimpleDateFormat
@@ -68,10 +67,7 @@ object Helper {
         cal.time = date
 
         when (freqId) {
-            Frequency.HOURLY.id -> {
-                cal = Calendar.getInstance()
-                cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
-            }
+            Frequency.HOURLY.id -> cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
 
             Frequency.DAILY.id -> cal.set(Calendar.DAY_OF_MONTH, (cal.get(Calendar.DAY_OF_MONTH) + 1))
 

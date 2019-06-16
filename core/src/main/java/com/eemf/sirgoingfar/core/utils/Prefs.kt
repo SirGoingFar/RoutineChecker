@@ -8,8 +8,6 @@ class Prefs private constructor(context: Context) {
 
     private val APP_PREFS = "app_prefs"
     private val PREF_ALARM_ID = "pref_alarm_id"
-    private val PREF_AUDIO_RINGER_MODE = "pref_audio_ringer_mode"
-    private val PREF_STREAM_VOLUME = "pref_stream_volume"
 
     private val mPrefs: SharedPreferences
 
@@ -26,14 +24,6 @@ class Prefs private constructor(context: Context) {
             saveNextAlarmId(nextAlarmId)
             return nextAlarmId
         }
-
-    var audioRingerMode: Int
-        get() = mPrefs.getInt(PREF_AUDIO_RINGER_MODE, AudioManager.MODE_NORMAL)
-        set(ringerMode) = editor.putInt(PREF_AUDIO_RINGER_MODE, ringerMode).apply()
-
-    var streamVolume: Int
-        get() = mPrefs.getInt(PREF_STREAM_VOLUME, 2)
-        set(streamVolume) = editor.putInt(PREF_STREAM_VOLUME, streamVolume).apply()
 
     init {
         sInstance = this

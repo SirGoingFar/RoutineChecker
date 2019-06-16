@@ -7,7 +7,7 @@ import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.AppDatabase
 import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -16,7 +16,7 @@ class SimulatedJob(private val context: Context, private val occurrence: Routine
 
     suspend fun runJob() = runBlocking {
 
-        launch(Dispatchers.IO) {
+        val job = GlobalScope.launch {
 
             delay((Constants.MAXIMUM_ROUTINE_DURATION_MILLIS + Constants.WAITING_TIME_BEFORE_MARKED_AS_MISSED).toLong())
 
@@ -38,5 +38,7 @@ class SimulatedJob(private val context: Context, private val occurrence: Routine
             //schedule next routine
             AlarmHelper().execute(nextOccurrence, AlarmHelper.ACTION_SCHEDULE_ALARM)
         }
+
+        job.join()
     }
 }
