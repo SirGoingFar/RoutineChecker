@@ -10,6 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bafb52fb-361a-4fd0-9fba-1a3f25793e4a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/NextUpActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/NextUpRoutineRecyclerViewAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_next_up.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_next_up_routine.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/models/NextUpRoutine.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -20,18 +25,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/dialog_fragments/AddActivityDialogFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/dialog_fragments/AddActivityDialogFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineListActivityViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineListActivityViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_routine_occurrence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_routine_occurrence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/RoutineOccurrenceRecyclerViewAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/RoutineOccurrenceRecyclerViewAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineDetailOccurrenceListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineDetailOccurrenceListViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/Routine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/Routine.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineCheckerAppDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineCheckerAppDao.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,28 +57,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/NextUpActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="65" column="63" selection-start-line="65" selection-start-column="63" selection-end-line="65" selection-end-column="63" />
+            <state relative-caret-position="178">
+              <caret line="16" column="50" lean-forward="true" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/notification/NotificationHelper.kt">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/NextUpRoutineRecyclerViewAdapter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="-399">
+              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+              <folding>
+                <element signature="e#54#407#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,8 +80,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="-2596">
+              <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="224" column="42" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -92,57 +98,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+            <state relative-caret-position="236">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/dialog_fragments/AddActivityDialogFragment.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="240" selection-start-line="240" selection-end-line="240" />
-              <folding>
-                <element signature="e#62#739#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="16" column="120" selection-start-line="16" selection-start-column="120" selection-end-line="16" selection-end-column="120" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_routine_occurrence.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="92" column="38" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="70" column="44" lean-forward="true" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
+            <state relative-caret-position="293">
+              <caret line="90" selection-start-line="90" selection-end-line="90" />
             </state>
           </provider>
         </entry>
@@ -154,9 +120,9 @@
       <list>
         <option value="valueResourceFile" />
         <option value="Class" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="Kotlin File" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -177,11 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/BaseViewModel.java" />
-        <option value="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/AppDatabase.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineListViewModel.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/ViewModelFactory.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_routine_list.xml" />
         <option value="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/DateConverter.kt" />
         <option value="$PROJECT_DIR$/gradle.properties" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/bg_done_button.xml" />
@@ -194,14 +155,11 @@
         <option value="$PROJECT_DIR$/database/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_routine_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/BaseViewModel.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineDetailOccurrenceListViewModel.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/RingtoneService.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/core/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineOccurrence.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineListActivityViewModel.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt" />
         <option value="$PROJECT_DIR$/notification/src/main/java/com/eemf/sirgoingfar/notification/NotificationHelper.java" />
         <option value="$PROJECT_DIR$/notification/src/main/java/com/eemf/sirgoingfar/notification/NotificationParam.java" />
         <option value="$PROJECT_DIR$/notification/src/main/res/drawable/ic_alarm_raven.xml" />
@@ -215,19 +173,27 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/notification/NotificationParam.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_alarm_raven.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/notification/NotificationHelper.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/RoutineOccurrenceRecyclerViewAdapter.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_routine_detail.xml" />
         <option value="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/Routine.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt" />
-        <option value="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineCheckerAppDao.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_routine_occurrence.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt" />
-        <option value="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/dialog_fragments/AddActivityDialogFragment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineDetailOccurrenceListViewModel.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/RoutineOccurrenceRecyclerViewAdapter.kt" />
+        <option value="$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineCheckerAppDao.kt" />
+        <option value="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/models/NextUpRoutine.kt" />
+        <option value="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt" />
         <option value="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_next_up.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_next_up_routine.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/NextUpActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/NextUpRoutineRecyclerViewAdapter.kt" />
       </list>
     </option>
   </component>
@@ -378,8 +344,8 @@
       <recent name="com.eemf.sirgoingfar.database" />
     </key>
     <key name="CreateKotlinClassDialog.RecentsKey">
-      <recent name="com.eemf.sirgoingfar.core.utils" />
       <recent name="com.eemf.sirgoingfar.routinechecker.adapters" />
+      <recent name="com.eemf.sirgoingfar.core.utils" />
     </key>
     <key name="android.template.packageName">
       <recent name="com.eemf.sirgoingfar.routinechecker.activities" />
@@ -490,7 +456,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="421" y="6" width="1304" height="979" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49896264" weight="0.33201268" />
@@ -500,21 +465,21 @@
       <window_info id="Designer" order="5" />
       <window_info id="Resources Explorer" order="6" />
       <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Build" order="0" weight="0.53731346" />
+      <window_info anchor="bottom" id="Build" order="0" weight="0.53630704" />
       <window_info anchor="bottom" id="Run" order="1" weight="0.4533195" />
-      <window_info anchor="bottom" id="Logcat" order="2" weight="0.70228213" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="2" visible="true" weight="0.5086108" />
       <window_info anchor="bottom" id="TODO" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.49585062" />
-      <window_info anchor="bottom" id="Terminal" order="5" weight="0.6473029" />
+      <window_info anchor="bottom" id="Terminal" order="5" weight="0.64638346" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3952282" />
-      <window_info active="true" anchor="bottom" id="Debug" order="8" visible="true" weight="0.32376578" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4695752" />
       <window_info anchor="bottom" id="Android Profiler" order="9" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info anchor="right" id="Fabric" order="3" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.46092796" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.46031746" />
       <window_info anchor="right" id="Gradle" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Json Parser" order="7" />
@@ -613,7 +578,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt</url>
-          <line>59</line>
+          <line>60</line>
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
@@ -641,6 +606,32 @@
           <properties />
           <option name="timeStamp" value="74" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt</url>
+          <line>236</line>
+          <properties />
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt</url>
+          <line>226</line>
+          <properties />
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt</url>
+          <line>83</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/NextUpActivity.kt</url>
+          <line>16</line>
+          <properties />
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/android.arch.persistence.room/common/1.1.1/f8a350afcb2385f4fef5394897364edfdebd4929/common-1.1.1-sources.jar!/android/arch/persistence/room/Update.java</url>
           <line>38</line>
@@ -653,60 +644,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/RoutineListRecyclerViewAdapter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="34" column="58" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
-          <folding>
-            <element signature="e#54#507#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/custom/CustomSpinnerArrayAdapter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="938" selection-start-line="938" selection-end-line="938" />
-          <folding>
-            <element signature="e#42323#42324#0" expanded="true" />
-            <element signature="e#42353#42354#0" expanded="true" />
-            <element signature="e#43732#43733#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_routine_list.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/android.arch.persistence.room/common/1.1.1/f8a350afcb2385f4fef5394897364edfdebd4929/common-1.1.1-sources.jar!/android/arch/persistence/room/Update.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/notification/notification.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/build/tmp/kapt3/stubs/debug/com/eemf/sirgoingfar/database/AppDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
@@ -742,20 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineDetailOccurrenceListViewModel.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -763,27 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineOccurrence.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-          <folding>
-            <element signature="e#39#150#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineListActivityViewModel.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="3383" selection-start-line="3383" selection-end-line="3383" />
         </state>
       </provider>
     </entry>
@@ -796,13 +702,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/notification/src/main/java/com/eemf/sirgoingfar/notification/NotificationParam.java" />
     <entry file="file://$PROJECT_DIR$/notification/src/main/java/com/eemf/sirgoingfar/notification/NotificationHelper.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2760">
-          <caret line="140" selection-start-line="140" selection-end-line="140" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -884,14 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/os/Handler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -908,13 +799,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_missed_button.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/RoutineOccurrenceRecyclerViewAdapter.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="35" column="92" selection-start-line="35" selection-start-column="92" selection-end-line="35" selection-end-column="92" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_routine_detail.xml">
       <provider editor-type-id="android-designer2" />
@@ -945,13 +829,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineCheckerAppDao.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/notification/NotificationHelper.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -967,24 +844,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="16" column="120" selection-start-line="16" selection-start-column="120" selection-end-line="16" selection-end-column="120" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1005,13 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
@@ -1019,10 +875,167 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/viewmodels/RoutineDetailOccurrenceListViewModel.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="598">
+          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/RoutineOccurrenceRecyclerViewAdapter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="98" column="5" selection-end-line="107" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineCheckerAppDao.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/models/NextUpRoutine.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#42#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/java/util/Calendar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="1732" column="22" selection-start-line="1732" selection-start-column="22" selection-end-line="1732" selection-end-column="22" />
+          <folding>
+            <element signature="e#70860#70861#0" expanded="true" />
+            <element signature="e#70910#70911#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/src/main/java/com/eemf/sirgoingfar/database/RoutineOccurrence.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#39#150#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_routine.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="41" lean-forward="true" selection-end-line="95" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_next_up_routine.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="41" column="48" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="48" />
+          <folding>
+            <element signature="e#334#352#0" expanded="true" />
+            <element signature="e#383#401#0" expanded="true" />
+            <element signature="e#431#450#0" expanded="true" />
+            <element signature="e#480#498#0" expanded="true" />
+            <element signature="e#530#548#0" expanded="true" />
+            <element signature="e#622#640#0" expanded="true" />
+            <element signature="e#663#681#0" expanded="true" />
+            <element signature="e#944#963#0" expanded="true" />
+            <element signature="e#1495#1522#0" expanded="true" />
+            <element signature="e#1602#1620#0" expanded="true" />
+            <element signature="e#2370#2397#0" expanded="true" />
+            <element signature="e#2488#2506#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_next_up.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2596">
+          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="70" column="44" lean-forward="true" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+        <state relative-caret-position="293">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/app/ActivityThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="2908" column="28" selection-start-line="2908" selection-start-column="28" selection-end-line="2908" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="224" column="42" selection-start-line="224" selection-start-column="42" selection-end-line="224" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/NextUpActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="16" column="50" lean-forward="true" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/adapters/NextUpRoutineRecyclerViewAdapter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-399">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="e#54#407#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -16,6 +16,8 @@ object Constants {
     const val WAITING_TIME_BEFORE_MARKED_AS_MISSED = 5 * 60 * 1000 //wait for 5 minutes after routine has expired before marking as MISSED routine
     const val MAXIMUM_ROUTINE_DURATION_MILLIS = 15 * 60 * 1000 //all routine have a maximum execution time of 15 minutes
 
+    const val TWELVE_HOURS_IN_MILLIS = 12 * 60 * 100
+
     enum class Status(val id: Int, val label: String) {
         UNKNOWN(0, "Unknown"),
         PROGRESS(1, "In Progress"),

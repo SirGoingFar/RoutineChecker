@@ -27,4 +27,5 @@
     <string name="text_edit_routine">Edit Routine</string>
     <string name="text_invalid_action_identifier">Invalid action identifier</string>
     <string name="prefix_text">custom://</string>
+    <string name="text_next_up_in_x">Next up in <xliff:g example="12 hours" id="no_of_hrs">%s</xliff:g></string>
 </resources>

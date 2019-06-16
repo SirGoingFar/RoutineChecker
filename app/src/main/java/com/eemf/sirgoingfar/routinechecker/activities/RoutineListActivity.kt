@@ -9,7 +9,9 @@ import android.view.MenuItem
 import android.view.View
 import butterknife.ButterKnife
 import com.eemf.sirgoingfar.core.custom.AbsViewHolder
+import com.eemf.sirgoingfar.core.models.NextUpRoutine
 import com.eemf.sirgoingfar.core.utils.Constants
+import com.eemf.sirgoingfar.core.utils.Helper
 import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.Routine
 import com.eemf.sirgoingfar.database.RoutineOccurrence
@@ -21,6 +23,7 @@ import com.eemf.sirgoingfar.routinechecker.viewmodels.RoutineListActivityViewMod
 import com.eemf.sirgoingfar.routinechecker.viewmodels.ViewModelModule
 import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 import kotlinx.android.synthetic.main.activity_routine_list.*
+import java.util.*
 
 class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRoutineClickListener,
         AddActivityDialogFragment.OnSaveOccurrence {
@@ -124,12 +127,16 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
         private var mViewModel: RoutineListActivityViewModel = ViewModelModule().getRoutineListActivityViewModel(
                 mActivity.application, mActivity) as RoutineListActivityViewModel
 
+        private var mRoutineList: List<Routine>? = null
+
         init {
 
             //observe for Routine List data
             mViewModel.getRoutineListObserver().observe(mActivity, android.arch.lifecycle.Observer {
                 if (it == null)
                     return@Observer
+
+                mRoutineList = it
 
                 refreshPage(it)
 
@@ -156,6 +163,10 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
         fun saveRoutine(routine: Routine) {
             mViewModel.addRoutine(routine)
+        }
+
+        fun getCurrentRoutineList(): List<Routine> {
+            return mRoutineList!!
         }
     }
 
@@ -211,6 +222,23 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
     }
 
     private fun openNextUpActivity() {
+        val intent = Intent(this, NextUpActivity::class.java)
+        intent.putParcelableArrayListExtra(NextUpActivity.EXTRA_NEXT_UP_ROUTINE_LIST,
+                getNextUpRoutinelist(model.getCurrentRoutineList()))
+        startActivity(intent)
+    }
+
+    fun getNextUpRoutinelist(routineList: List<Routine>): ArrayList<NextUpRoutine> {
+        val list: ArrayList<NextUpRoutine> = ArrayList()
+        val cal: Calendar = Calendar.getInstance()
+
+        for (routine: Routine in routineList) {
+            if (routine.nextRoutineDate?.time!!.minus(cal.time.time) <= Constants.TWELVE_HOURS_IN_MILLIS) {
+                list.add(NextUpRoutine(routine.name, Helper.getUpNext(routine.freqId, routine.nextRoutineDate)))
+            }
+        }
+
+        return list
     }
 
     private fun switchScreenState(state: Int) {

@@ -2,6 +2,7 @@ package com.eemf.sirgoingfar.core.utils
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.os.Parcelable
 import android.text.TextUtils
 import com.eemf.sirgoingfar.core.R
 import java.text.SimpleDateFormat
@@ -86,7 +87,7 @@ object Helper {
         return cal.time
     }
 
-    private fun getUpNext(freqId: Int, date: Date?): String? {
+    fun getUpNext(freqId: Int, date: Date?): String? {
         return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, computeNextRoutineTime(freqId, date)!!.time)
     }
 

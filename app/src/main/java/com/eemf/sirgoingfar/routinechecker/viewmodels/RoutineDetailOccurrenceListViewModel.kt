@@ -29,10 +29,9 @@ class RoutineDetailOccurrenceListViewModel(mApplication: Application, private va
         }
     }
 
-    fun addRountineOccurrence(occurrence: RoutineOccurrence) {
-        occurrence.alarmId = mPref.nextAlarmId
+    fun updateRoutineOccurrence(clickedRoutineOccurrence: RoutineOccurrence) {
         mExecutors?.diskIO()?.execute {
-            mDb?.dao?.addOccurrence(occurrence)
+            mDb?.dao?.updateOccurrence(clickedRoutineOccurrence)
         }
     }
 }

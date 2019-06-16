@@ -186,6 +186,10 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
         fun updateRoutine(routine: Routine) {
             mRoutineViewModel.editRoutine(routine)
         }
+
+        fun updateRoutineOccurrence(clickedRoutineOccurrence: RoutineOccurrence) {
+            mOccurrenceViewModel.updateRoutineOccurrence(clickedRoutineOccurrence)
+        }
     }
 
     private lateinit var mRoutine: Routine
@@ -232,12 +236,14 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
         model.updateRoutine(routine)
     }
 
-    override fun onDoneBtnClick(position: Int, clickedRoutine: RoutineOccurrence) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onDoneBtnClick(position: Int, clickedRoutineOccurrence: RoutineOccurrence) {
+        clickedRoutineOccurrence.status = Constants.Status.DONE.id
+        model.updateRoutineOccurrence(clickedRoutineOccurrence)
     }
 
-    override fun onMissedBtnClick(position: Int, clickedRoutine: RoutineOccurrence) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onMissedBtnClick(position: Int, clickedRoutineOccurrence: RoutineOccurrence) {
+        clickedRoutineOccurrence.status = Constants.Status.MISSED.id
+        model.updateRoutineOccurrence(clickedRoutineOccurrence)
     }
 
     private fun performAction(closeActivity: Boolean) {

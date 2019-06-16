@@ -100,9 +100,9 @@ class RoutineOccurrenceRecyclerViewAdapter(private val mContext: Context, privat
 
     interface OnStatusButtonClickListener {
 
-        fun onDoneBtnClick(position: Int, clickedRoutine: RoutineOccurrence)
+        fun onDoneBtnClick(position: Int, clickedRoutineOccurrence: RoutineOccurrence)
 
-        fun onMissedBtnClick(position: Int, clickedRoutine: RoutineOccurrence)
+        fun onMissedBtnClick(position: Int, clickedRoutineOccurrence: RoutineOccurrence)
 
     }
 }
