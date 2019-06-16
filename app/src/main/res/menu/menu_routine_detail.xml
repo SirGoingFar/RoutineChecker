@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_notification1"
+        android:icon="@drawable/ic_action_overflow"
+        android:title="@string/menu_title_more"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_edit_routine"
+                android:icon="@drawable/ic_create"
+                android:orderInCategory="1"
+                android:title="@string/text_add_routine"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+</menu>

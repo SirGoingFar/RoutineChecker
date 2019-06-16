@@ -27,10 +27,14 @@ object Helper {
         cal.time = date
 
         val min: Int = cal.get(Calendar.MINUTE)
-        val hour: Int = cal.get(Calendar.HOUR_OF_DAY)
+        var hour: Int = cal.get(Calendar.HOUR_OF_DAY)
         val meridian: String = if (hour > 12) "PM" else "AM"
 
-        return context.getString(R.string.text_time, hour % 12, String.format(Locale.getDefault(), "%02d", min), meridian)
+        hour = hour % 12
+        if (hour == 0)
+            hour = 12
+
+        return context.getString(R.string.text_time, hour, String.format(Locale.getDefault(), "%02d", min), meridian)
     }
 
     fun getFreqById(freqId: Int): Frequency? {
@@ -53,11 +57,11 @@ object Helper {
         if (date == null)
             return null
 
-        val timeText = getUpNext(context, freqId, date)
+        val timeText = getUpNext(freqId, date)
         return context.getString(R.string.routine_next_occurrence_text, timeText)
     }
 
-    fun getUpNext(context: Context, freqId: Int, date: Date?): String? {
+    private fun getUpNext(freqId: Int, date: Date?): String? {
 
         val cal: Calendar = Calendar.getInstance()
         cal.isLenient = false
@@ -81,11 +85,11 @@ object Helper {
     }
 
     fun getDateString(date: Date?): String? {
-        return DateUtil.parseDateLong("EEE, d MMM yyyy", date.time)
+        return parseDateLong("EEE, d MMM yyyy", date?.time)
     }
 
-    fun parseDateLong(patternString: String, timeInMillis: Long): String? {
-        if (TextUtils.isEmpty(patternString) || timeInMillis < 0) {
+    fun parseDateLong(patternString: String, timeInMillis: Long?): String? {
+        if (TextUtils.isEmpty(patternString) || timeInMillis == null || timeInMillis < 0) {
             return null
         }
         val sdf = SimpleDateFormat(patternString, Locale.ENGLISH)

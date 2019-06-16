@@ -18,7 +18,8 @@ import com.eemf.sirgoingfar.routinechecker.viewmodels.RoutineListActivityViewMod
 import com.eemf.sirgoingfar.routinechecker.viewmodels.ViewModelModule
 import kotlinx.android.synthetic.main.activity_routine_list.*
 
-class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRoutineClickListener {
+class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRoutineClickListener,
+        AddActivityDialogFragment.OnSaveOccurrence {
 
     inner class ViewHolder(mContainer: View) : AbsViewHolder(mContainer) {
 
@@ -70,7 +71,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
             if (mMenu == null)
                 return
 
-            val option = mMenu.findItem(menuId) ?: return
+            val option = mMenu?.findItem(menuId) ?: return
 
             option.isVisible = isVisible
         }
@@ -141,11 +142,14 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
             mViewModel.getAllRoutines()
         }
 
+        fun saveRoutine(routine: Routine) {
+            mViewModel.addRoutine(routine)
+        }
     }
 
     private lateinit var views: ViewHolder
     private lateinit var model: Model
-    private lateinit var mMenu: Menu
+    private var mMenu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -163,7 +167,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
 
-            R.id.action_add_todo -> {
+            R.id.action_add_routine -> {
                 openAddRoutineDialog()
                 true
             }
@@ -183,8 +187,12 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
         startActivity(intent)
     }
 
+    override fun onSaveRoutine(routine: Routine, isEdit: Boolean) {
+        model.saveRoutine(routine)
+    }
+
     fun openAddRoutineDialog() {
-        AddActivityDialogFragment.newInstance().show(this.fragmentManager,
+        AddActivityDialogFragment.newInstance(this, false).show(this.fragmentManager,
                 AddActivityDialogFragment::class.java.name)
     }
 

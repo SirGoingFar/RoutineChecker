@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.eemf.sirgoingfar.core.custom.AbsViewHolder
 import com.eemf.sirgoingfar.core.utils.ColorUtil
@@ -13,6 +15,7 @@ import com.eemf.sirgoingfar.database.Routine
 import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.R
 import com.eemf.sirgoingfar.routinechecker.adapters.RoutineOccurrenceRecyclerViewAdapter
+import com.eemf.sirgoingfar.routinechecker.dialog_fragments.AddActivityDialogFragment
 import com.eemf.sirgoingfar.routinechecker.viewmodels.BaseViewModel
 import com.eemf.sirgoingfar.routinechecker.viewmodels.RoutineDetailOccurrenceListViewModel
 import com.eemf.sirgoingfar.routinechecker.viewmodels.RoutineListActivityViewModel
@@ -20,7 +23,7 @@ import com.eemf.sirgoingfar.routinechecker.viewmodels.ViewModelModule
 import kotlinx.android.synthetic.main.activity_routine_detail.*
 import java.util.*
 
-class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapter.OnStatusButtonClickListener {
+class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapter.OnStatusButtonClickListener, AddActivityDialogFragment.OnSaveOccurrence {
 
     inner class ViewHolder(private val mContainer: View) : AbsViewHolder(mContainer) {
 
@@ -161,7 +164,7 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
             })
 
             //Observe for UI state change
-            mOccurrenceViewModel.getRequestStateObserver().observe(mActivity, android.arch.lifecycle.Observer {
+            mOccurrenceViewModel.getRequestStateObserver().observe(mActivity, Observer {
                 if (it == null)
                     return@Observer
 
@@ -174,6 +177,14 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
                 performAction(true)
 
             mRoutineViewModel.getRoutineById(routineId)
+        }
+
+        fun getRoutineOccurrences() {
+            mOccurrenceViewModel.getAllRoutineOccurrences(mRoutine.id)
+        }
+
+        fun updateRoutine(routine: Routine) {
+            mRoutineViewModel.editRoutine(routine)
         }
     }
 
@@ -198,6 +209,29 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_routine_detail, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return if (item?.itemId == R.id.action_edit_routine) {
+            openEditDialog()
+            true
+        } else
+            super.onOptionsItemSelected(item)
+    }
+
+    private fun openEditDialog() {
+        AddActivityDialogFragment.newInstance(mRoutine, this, true).show(this.fragmentManager,
+                AddActivityDialogFragment::class.java.name)
+    }
+
+    override fun onSaveRoutine(routine: Routine, isEdit: Boolean) {
+        this.isEdit = isEdit
+        model.updateRoutine(routine)
+    }
+
     override fun onDoneBtnClick(position: Int, clickedRoutine: RoutineOccurrence) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -215,6 +249,7 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
             isEdit = false
         } else {
             views = ViewHolder(window.decorView.rootView)
+            model.getRoutineOccurrences()
         }
     }
 

@@ -23,5 +23,6 @@
     <string name="text_done">DONE</string>
     <string name="text_missed">MISSED</string>
     <string name="mock_occurrence_date">Thurs, 24th May 2018</string>
-    <string name="text_done">DONE</string>
+    <string name="text_select_a_frequency">Select a frequency</string>
+    <string name="text_edit_routine">Edit Routine</string>
 </resources>

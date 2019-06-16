@@ -24,6 +24,7 @@ class RoutineOccurrence() : Parcelable {
     @ColumnInfo(name = "occurrence_date")
     var occurrenceDate: Date? = null
 
+    @Ignore
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()
         routineId = parcel.readInt()
