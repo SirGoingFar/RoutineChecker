@@ -227,7 +227,15 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
             return null
         }
 
-        return Routine(titleText, descText, selectedFrequencyIndex, selectedRoutineTime.time)
+        if (isEdit) {
+            mRoutine?.name = titleText
+            mRoutine?.desc = descText
+            mRoutine?.freqId = selectedFrequencyIndex
+            mRoutine?.date = selectedRoutineTime.time
+            return mRoutine
+        } else {
+            return Routine(titleText, descText, selectedFrequencyIndex, selectedRoutineTime.time)
+        }
     }
 
     private fun resetViews() {
