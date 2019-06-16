@@ -42,25 +42,29 @@ class AlarmReceiver : BroadcastReceiver() {
         param.isAutoCancel = true
         notifHelper.notifyUser(param)
 
+        GlobalScope.launch(Dispatchers.Default) {
+            doIo(context, occurrence)
+        }
+    }
 
-        runBlocking {
-            val job = GlobalScope.launch(Dispatchers.Default) {
-                delay(Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS.toLong())
+    suspend fun doIo(context: Context, occurrence: RoutineOccurrence) = coroutineScope {
+        withContext(Dispatchers.IO) {
+            delay(Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS.toLong())
 
-                //update Routines's Status and update the database
-                val mDb = AppDatabase.getInstance(context)
-                val currentOccurrence: RoutineOccurrence? = mDb?.dao?.getRoutineOccurrenceByAlarmId(occurrence.alarmId)
+            //update Routines's Status and update the database
+            val mDb = AppDatabase.getInstance(context)
+            val currentOccurrence: RoutineOccurrence? = mDb?.dao?.getRoutineOccurrenceByAlarmId(occurrence.alarmId)
 
-                if (currentOccurrence?.status == Constants.Status.UNKNOWN.id) {
-                    //If the user hasn't changed the status, toggle it
-                    currentOccurrence.status = Constants.Status.PROGRESS.id
-                    mDb.dao.updateOccurrence(currentOccurrence)
-                }
+            if (currentOccurrence?.status == Constants.Status.UNKNOWN.id) {
+                //If the user hasn't changed the status, toggle it
+                currentOccurrence.status = Constants.Status.PROGRESS.id
+                mDb.dao.updateOccurrence(currentOccurrence)
+            }
 
-                //start Simulated Job
+            //start Simulated Job
+            withContext(Dispatchers.Default) {
                 SimulatedJob(context, currentOccurrence!!).runJob()
             }
-            job.join()
         }
     }
 
