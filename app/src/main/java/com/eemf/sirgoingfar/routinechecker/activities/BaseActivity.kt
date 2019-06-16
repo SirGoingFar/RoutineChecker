@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.ActionBar
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.FrameLayout
 import android.widget.Toast
@@ -46,5 +47,10 @@ abstract class BaseActivity : AppCompatActivity() {
     fun toastLong(msg: Any?) {
         if (msg == null) return
         Toast.makeText(applicationContext, msg.toString(), Toast.LENGTH_LONG).show()
+    }
+
+    protected fun createAlertDialog(message: String): AlertDialog.Builder {
+        return AlertDialog.Builder(this)
+                .setMessage(message)
     }
 }

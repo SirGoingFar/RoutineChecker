@@ -2,7 +2,10 @@ package com.eemf.sirgoingfar.core.utils
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.os.Parcelable
+import android.text.TextUtils
 import com.eemf.sirgoingfar.core.R
+import java.text.SimpleDateFormat
 import java.util.*
 
 object Helper {
@@ -16,8 +19,8 @@ object Helper {
         return list
     }
 
-    fun hasTimePassed(activityStartTime: Date): Boolean {
-        return Calendar.getInstance().timeInMillis > activityStartTime.time
+    fun hasTimePassed(date: Date): Boolean {
+        return Calendar.getInstance().timeInMillis >= date.time
     }
 
     fun getTimeStringFromDate(context: Context, date: Date?): String? {
@@ -25,10 +28,14 @@ object Helper {
         cal.time = date
 
         val min: Int = cal.get(Calendar.MINUTE)
-        val hour: Int = cal.get(Calendar.HOUR_OF_DAY)
+        var hour: Int = cal.get(Calendar.HOUR_OF_DAY)
         val meridian: String = if (hour > 12) "PM" else "AM"
 
-        return context.getString(R.string.text_time, hour % 12, String.format(Locale.getDefault(), "%02d", min), meridian)
+        hour = hour % 12
+        if (hour == 0)
+            hour = 12
+
+        return context.getString(R.string.text_time, hour, String.format(Locale.getDefault(), "%02d", min), meridian)
     }
 
     fun getFreqById(freqId: Int): Frequency? {
@@ -51,18 +58,20 @@ object Helper {
         if (date == null)
             return null
 
-        val timeText = getUpNext(context, freqId, date)
+        val timeText = getUpNext(freqId, date)
         return context.getString(R.string.routine_next_occurrence_text, timeText)
     }
 
-    fun getUpNext(context: Context, freqId: Int, date: Date?): String? {
-
-        val cal: Calendar = Calendar.getInstance()
+    fun computeNextRoutineTime(freqId: Int, date: Date?): Date? {
+        var cal: Calendar = Calendar.getInstance()
         cal.isLenient = false
         cal.time = date
 
         when (freqId) {
-            Frequency.HOURLY.id -> cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
+            Frequency.HOURLY.id -> {
+                cal = Calendar.getInstance()
+                cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
+            }
 
             Frequency.DAILY.id -> cal.set(Calendar.DAY_OF_MONTH, (cal.get(Calendar.DAY_OF_MONTH) + 1))
 
@@ -75,6 +84,27 @@ object Helper {
             else -> return null
         }
 
-        return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, cal.timeInMillis)
+        return cal.time
+    }
+
+    fun getUpNext(freqId: Int, date: Date?): String? {
+        return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, computeNextRoutineTime(freqId, date)!!.time)
+    }
+
+    fun getDateString(date: Date?): String? {
+        return parseDateLong("EEE, d MMM yyyy", date?.time)
+    }
+
+    fun parseDateLong(patternString: String, timeInMillis: Long?): String? {
+        if (TextUtils.isEmpty(patternString) || timeInMillis == null || timeInMillis < 0) {
+            return null
+        }
+        val sdf = SimpleDateFormat(patternString, Locale.ENGLISH)
+        try {
+            return sdf.format(Date(timeInMillis))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
     }
 }

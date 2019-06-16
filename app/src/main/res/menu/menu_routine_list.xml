@@ -9,7 +9,7 @@
         app:showAsAction="ifRoom">
         <menu>
             <item
-                android:id="@+id/action_add_todo"
+                android:id="@+id/action_add_routine"
                 android:icon="@drawable/ic_add_black"
                 android:orderInCategory="1"
                 android:title="@string/text_add_routine"
@@ -20,6 +20,7 @@
                 android:icon="@drawable/ic_chevron_right_black"
                 android:orderInCategory="3"
                 android:title="@string/text_next_up"
+                android:visible="false"
                 app:showAsAction="never" />
         </menu>
     </item>

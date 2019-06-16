@@ -6,13 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".activities.RoutineListActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_rountine_list"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/dimen_80dp"
-        tools:listitem="@layout/item_routine" />
+        android:layout_height="match_parent">
+
+        <!-- Filled State -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_rountine_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/dimen_80dp"
+            android:visibility="gone"
+            tools:listitem="@layout/item_routine" />
+
+        <!-- Empty State -->
+        <TextView
+            android:id="@+id/tv_empty_state"
+            style="@style/EmptyScreenText"
+            android:background="@color/colorDirtyWhite"
+            android:gravity="center"
+            android:padding="@dimen/dimen_32dp"
+            android:text="@string/text_empty_screen_routine_list"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="@dimen/dimen_24dp"
+            android:layout_height="@dimen/dimen_24dp"
+            android:layout_gravity="center"
+            android:alpha="0.7"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorAccent"
+            android:indeterminateTintMode="src_atop"
+            tools:ignore="UnusedAttribute" />
+
+    </FrameLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_routine"

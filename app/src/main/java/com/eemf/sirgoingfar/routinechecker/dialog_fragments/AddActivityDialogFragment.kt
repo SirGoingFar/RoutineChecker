@@ -2,165 +2,67 @@ package com.eemf.sirgoingfar.routinechecker.dialog_fragments
 
 import android.app.Dialog
 import android.app.TimePickerDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Parcelable
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
-import android.util.DisplayMetrics
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowManager
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.TimePicker
-
-import com.eemf.sirgoingfar.core.custom.CustomSpinnerArrayAdapter
-import com.eemf.sirgoingfar.core.utils.Constants
-import com.eemf.sirgoingfar.routinechecker.R
-
-import java.io.Serializable
-import java.util.ArrayList
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
-
+import android.widget.*
 import butterknife.BindView
 import butterknife.ButterKnife
-
-import com.eemf.sirgoingfar.core.utils.Constants.MINIMUM_TITLE_TEXT
+import com.eemf.sirgoingfar.core.custom.CustomSpinnerArrayAdapter
+import com.eemf.sirgoingfar.core.utils.Constants
+import com.eemf.sirgoingfar.core.utils.Frequency
+import com.eemf.sirgoingfar.core.utils.Helper
+import com.eemf.sirgoingfar.database.Routine
+import com.eemf.sirgoingfar.routinechecker.R
+import java.io.Serializable
 import java.lang.String.format
+import java.util.*
 
-class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeSetListener {
+class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeSetListener, AdapterView.OnItemSelectedListener {
 
-   /* @BindView(R.id.tv_header_text)
-    internal var headerText: TextView? = null
+    @BindView(R.id.tv_header_text)
+    @JvmField
+    var headerText: TextView? = null
 
-    @BindView(R.id.et_activity_desc)
-    internal var activityDesc: EditText? = null
+    @BindView(R.id.et_routine_title)
+    @JvmField
+    var title: EditText? = null
 
-    @BindView(R.id.tv_activity_time_from)
-    internal var timeFromView: TextView? = null
+    @BindView(R.id.et_routine_desc)
+    @JvmField
+    var desc: EditText? = null
 
-    @BindView(R.id.tv_activity_time_to)
-    internal var timeToView: TextView? = null
+    @BindView(R.id.tv_routine_start_time)
+    @JvmField
+    var time: TextView? = null
 
-    @BindView(R.id.spinner_priority)
-    internal var prioritySpinner: Spinner? = null
+    @BindView(R.id.spinner_routine_freq)
+    @JvmField
+    var freqSpinner: Spinner? = null
 
-    @BindView(R.id.btn_add_activity)
-    internal var btnAddActivity: Button? = null
+    @BindView(R.id.btn_add_routine)
+    @JvmField
+    var btnAddActivity: Button? = null
 
-    @BindView(R.id.btn_add_another_activity)
-    internal var btnAddAnother: Button? = null
+    @BindView(R.id.btn_add_another_routine)
+    @JvmField
+    var btnAddAnother: Button? = null
 
-    private var mCurrentActivity: TodoActivity? = null
-    private var mActivityId: Int = 0
-    private var selectedTime_from: Calendar? = null
-    private var selectedTime_to: Calendar? = null
-    private var selectedPriority: Int = 0
-    private var isTimeFromClicked: Boolean = false
-    private var is24Hour: Boolean = false
+    private var selectedFrequencyIndex: Int = 0
+    private var selectedRoutineTime: Calendar = Calendar.getInstance()
+    private var titleText: String? = null
+    private var descText: String? = null
     private var isEdit: Boolean = false
-    private var isTimeFromSet: Boolean = false
-    private var isTimeToSet: Boolean = false
-    private var title: String? = null
-    private var timePicker: TimePickerDialog? = null
-    private var mListener: OnSaveActivity? = null
-    private var mCurrentActivities: List<TodoActivity>? = null
-    private var mTodo: Todo? = null
+    private var is24Hour: Boolean = false
+    private var isTimeSelected: Boolean = false
+    private lateinit var mListener: OnSaveOccurrence
+    private var mRoutine: Routine? = null
+    private lateinit var mTimePicker: TimePickerDialog
 
-    private//From and to cannot be equal
-    //Start/End time must not be within a specific activity's time frame/range
-    //within range
-    // from is within range
-    //to is within range
-    //ensure the second is zero
-    val activityObject: TodoActivity?
-        get() {
-            val description: String
-            val startTime: Date
-            val endTime: Date
-
-            description = activityDesc!!.text.toString().trim { it <= ' ' }
-            if (TextUtils.isEmpty(description)) {
-                activityDesc!!.error = appCompatActivity.getString(R.string.text_title_cannot_be_empty)
-                return null
-            }
-
-            if (description.length < MINIMUM_TITLE_TEXT) {
-                activityDesc!!.error = appCompatActivity.getString(R.string.text_title_cannot_be_less_than) + " " + MINIMUM_TITLE_TEXT.toString() + " " + appCompatActivity.getString(R.string.text_characters)
-                return null
-            }
-            if (selectedTime_from == null) {
-                timeFromView!!.error = appCompatActivity.getString(R.string.text_set_start_time)
-                toast(appCompatActivity.getString(R.string.text_set_end_time))
-                return null
-            }
-
-            if (selectedTime_to == null) {
-                timeToView!!.error = appCompatActivity.getString(R.string.text_end_time_must_be_set)
-                toast(appCompatActivity.getString(R.string.text_end_time_must_be_set))
-                return null
-            }
-
-            val from = selectedTime_from!!.timeInMillis
-            val to = selectedTime_to!!.timeInMillis
-            if (from >= to) {
-                timeFromView!!.error = appCompatActivity.getString(R.string.text_start_time_must_be_lesser_than_start_time)
-                timeToView!!.error = appCompatActivity.getString(R.string.text_end_time_must_be_more_than_start_time)
-                toast(appCompatActivity.getString(R.string.text_set_appropriate_time))
-                return null
-            }
-            var currentActivity_from: Long
-            var currentActivity_to: Long
-            for (activity in mCurrentActivities!!) {
-
-                if (activity === mCurrentActivity)
-                    continue
-
-                currentActivity_from = activity.getStartTime().getTime()
-                currentActivity_to = activity.getEndTime().getTime()
-
-                if (from >= currentActivity_from && to <= currentActivity_to
-                        || from >= currentActivity_from && from <= currentActivity_to
-                        || to >= currentActivity_from && to <= currentActivity_to) {
-                    toast(appCompatActivity.getString(R.string.text_invalid_activity_time_range))
-                    return null
-                }
-            }
-            selectedTime_from!!.set(Calendar.SECOND, 0)
-            selectedTime_to!!.set(Calendar.SECOND, 0)
-
-            startTime = selectedTime_from!!.time
-            endTime = selectedTime_to!!.time
-
-            if (selectedPriority < 0) {
-                toast("Select a priority level")
-                return null
-            }
-
-            if (isEdit) {
-                mCurrentActivity!!.setDescription(description)
-                mCurrentActivity!!.setStartTime(startTime)
-                mCurrentActivity!!.setEndTime(endTime)
-                mCurrentActivity!!.setPriority(selectedPriority)
-
-            } else {
-                mCurrentActivity = TodoActivity(description, startTime, endTime, Date(), mTodo!!.getId(),
-                        mTodo!!.getDate(), selectedPriority, Constants.Status.PENDING.id, null, mTodo!!.getFirebaseDbId(),
-                        prefs.nextAlarmId, AlarmStatus.PENDING.getStatusId())
-            }
-
-            return mCurrentActivity
-        }*/
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_add_routine, container, false)
@@ -170,16 +72,17 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        /*if (savedInstanceState != null) {
-            selectedTime_from = Calendar.getInstance()
-            selectedTime_to = Calendar.getInstance()
-            selectedTime_from!!.timeInMillis = savedInstanceState.getLong(Constants.ARG_TIME_FROM)
-            selectedTime_to!!.timeInMillis = savedInstanceState.getLong(Constants.ARG_TIME_TO)
-            title = savedInstanceState.getString(Constants.ARG_ACTIVITY_TITLE)
-            selectedPriority = savedInstanceState.getInt(Constants.ARG_ACTIVITY_PRIORITY)
-            mListener = savedInstanceState.getSerializable(Constants.ARG_ACTIVITY_LISTENER) as OnSaveActivity
-            mCurrentActivities = savedInstanceState.getParcelableArrayList<TodoActivity>(Constants.ARG_CURRENT_ACTIVITIES)
-            mTodo = savedInstanceState.getParcelable<Parcelable>(Constants.ARG_CURRENT_TODO)
+        if (savedInstanceState != null) {
+            selectedRoutineTime.timeInMillis = savedInstanceState.getLong(Constants.ARG_TIME)
+            titleText = savedInstanceState.getString(Constants.ARG_ROUTINE_TITLE)
+            descText = savedInstanceState.getString(Constants.ARG_ROUTINE_DESC)
+            selectedRoutineTime.time = Date(savedInstanceState.getLong(Constants.ARG_TIME))
+            isTimeSelected = savedInstanceState.getBoolean(Constants.ARG_IS_TIME_SELECTED, false)
+            selectedFrequencyIndex = savedInstanceState.getInt(Constants.ARG_ROUTINE_PRIORITY)
+            mListener = savedInstanceState.getSerializable(Constants.ARG_LISTENER) as OnSaveOccurrence
+
+            if (isEdit)
+                mRoutine = savedInstanceState.getParcelable<Parcelable>(Constants.ARG_CURRENT_ROUTINE) as Routine
         }
 
         val dialog = super.onCreateDialog(savedInstanceState)
@@ -189,8 +92,8 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
         val deviceWidth = metrics.widthPixels
         val deviceHeight = metrics.heightPixels
 
-        var width = (deviceWidth * 0.9).toInt()
-        val height: Int
+        val width = (deviceWidth * 0.9).toInt()
+        val height: Int = (deviceHeight * 0.6).toInt()
 
         val window = dialog.window
         if (window != null) {
@@ -198,184 +101,99 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
             //remove window title
             window.requestFeature(Window.FEATURE_NO_TITLE)
 
+            //set Width and Height
+            dialog.setContentView(R.layout.dialog_add_routine)
+            window.setLayout(width, height)
+
             //set window layout
-            dialog.setContentView(R.layout.dialog_add_activity)
-        }*/
+            dialog.setContentView(R.layout.dialog_add_routine)
+        }
 
         return dialog
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /*//check if there is a Listener
-        if (mListener == null)
-            throw IllegalArgumentException(appCompatActivity.getString(R.string.text_listener_cannot_be_null))
-
-        //check if the available activities are passed
-        if (mCurrentActivities == null)
-            throw IllegalArgumentException(appCompatActivity.getString(R.string.text_list_cannot_be_null))
-
-        //check if the Todo date is available
-        if (mTodo == null)
-            throw IllegalArgumentException(appCompatActivity.getString(R.string.text_todo_cannot_be_null))
-
-        is24Hour = false
-
-        initializeViews()*/
+        initializeViews(view)
     }
 
-    /*fun setCurrentActivities(mCurrentActivities: List<TodoActivity>) {
-        this.mCurrentActivities = mCurrentActivities
-    }
+    private fun initializeViews(container: View) {
+        headerText = container.findViewById(R.id.tv_header_text)
+        title = container.findViewById(R.id.et_routine_title)
+        desc = container.findViewById(R.id.et_routine_desc)
+        time = container.findViewById(R.id.tv_routine_start_time)
+        freqSpinner = container.findViewById(R.id.spinner_routine_freq)
+        btnAddActivity = container.findViewById(R.id.btn_add_routine)
+        btnAddAnother = container.findViewById(R.id.btn_add_another_routine)
 
-    private fun initializeViews() {
-
-        if (isEdit && mCurrentActivity != null) {
+        if (isEdit) {
             val cal = Calendar.getInstance()
-            cal.time = mCurrentActivity!!.getStartTime()
-            var from_hr = if (is24Hour) cal.get(Calendar.HOUR_OF_DAY) else cal.get(Calendar.HOUR)
+            cal.time = mRoutine?.date
+            var hr = if (is24Hour) cal.get(Calendar.HOUR_OF_DAY) else cal.get(Calendar.HOUR)
             if (!is24Hour && cal.get(Calendar.AM_PM) == Calendar.PM)
-                from_hr += 12
-            val from_min = cal.get(Calendar.MINUTE)
+                hr += 12
+            val min = cal.get(Calendar.MINUTE)
 
-            cal.time = mCurrentActivity!!.getEndTime()
-            var to_hr = if (is24Hour) cal.get(Calendar.HOUR_OF_DAY) else cal.get(Calendar.HOUR)
-            if (!is24Hour && cal.get(Calendar.AM_PM) == Calendar.PM)
-                to_hr += 12
-            val to_min = cal.get(Calendar.MINUTE)
+            selectedRoutineTime = Calendar.getInstance()
+            selectedRoutineTime.time = mRoutine?.date
 
-            selectedTime_from = Calendar.getInstance()
-            selectedTime_to = Calendar.getInstance()
-
-            selectedTime_from!!.time = mCurrentActivity!!.getStartTime()
-            selectedTime_to!!.time = mCurrentActivity!!.getEndTime()
-
-            activityDesc!!.setText(mCurrentActivity!!.getDescription())
-            timeFromView!!.text = getTimeText(is24Hour, from_hr, from_min)
-            timeToView!!.text = getTimeText(is24Hour, to_hr, to_min)
-            selectedPriority = mCurrentActivity!!.getPriority() + 1
-            headerText!!.text = appCompatActivity.getString(R.string.text_edit_activity)
-            btnAddAnother!!.visibility = View.GONE
-            btnAddActivity!!.text = appCompatActivity.getString(R.string.text_done)
+            title?.setText(mRoutine?.name)
+            desc?.setText(mRoutine?.desc)
+            time?.text = getTimeText(is24Hour, hr, min)
+            selectedFrequencyIndex = mRoutine?.freqId?.plus(1) ?: 0
+            headerText!!.text = appCompatActivity.getString(R.string.text_edit_routine)
+            btnAddAnother?.visibility = View.GONE
+            btnAddActivity?.text = appCompatActivity.getString(R.string.text_done)
+            isTimeSelected = true
         }
 
-        val priority = ArrayList<String>()
-        priority.add("Select a priority level")
-        priority.add(Constants.Priority.NONE.title)
-        priority.add(Constants.Priority.LOW.title)
-        priority.add(Constants.Priority.MEDIUM.title)
-        priority.add(Constants.Priority.HIGH.title)
+        val freqList = ArrayList<String>()
+        freqList.add(appCompatActivity.getString(R.string.text_select_a_frequency))
+        freqList.add(Frequency.HOURLY.label)
+        freqList.add(Frequency.DAILY.label)
+        freqList.add(Frequency.WEEKLY.label)
+        freqList.add(Frequency.MONTHLY.label)
+        freqList.add(Frequency.YEARLY.label)
 
-        val spinnerArrayAdapter = CustomSpinnerArrayAdapter(appCompatActivity, R.layout.spinner_selected_item_look, priority)
+        val spinnerArrayAdapter = CustomSpinnerArrayAdapter(appCompatActivity, R.layout.spinner_selected_item_look, freqList)
         spinnerArrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         spinnerArrayAdapter.setSelectedItemColor(R.color.colorBlack)
         spinnerArrayAdapter.setUnselectableItemColor(R.color.colorBlack_transluscent)
         spinnerArrayAdapter.setUnselectablePosition(0)
         spinnerArrayAdapter.setSelectedItemTextSize(16f)
-        prioritySpinner!!.adapter = spinnerArrayAdapter
-        prioritySpinner!!.prompt = appCompatActivity.getString(R.string.text_select_an_option)
-        prioritySpinner!!.setSelection(selectedPriority)
-        prioritySpinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            internal var prioritySelected: Boolean = false
+        freqSpinner?.adapter = spinnerArrayAdapter
+        freqSpinner?.prompt = appCompatActivity.getString(R.string.text_select_a_frequency)
+        freqSpinner?.setSelection(selectedFrequencyIndex)
+        freqSpinner?.onItemSelectedListener = this@AddActivityDialogFragment
 
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+        if (!TextUtils.isEmpty(titleText))
+            title?.setText(titleText)
 
-                selectedPriority = position - 1
+        if (!TextUtils.isEmpty(descText))
+            desc?.setText(descText)
 
-                if (selectedPriority >= 0) {
-                    trackEvent(if (prioritySelected)
-                        GeneralAnalyticsConstants.USER_UPDATED_ACTIVITY_PRIORITY
-                    else
-                        GeneralAnalyticsConstants.USER_SELECTED_ACTIVITY_PRIORITY)
-                    prioritySelected = true
-                }
+        time?.setOnClickListener {
+            val hour = if (is24Hour) selectedRoutineTime.get(Calendar.HOUR_OF_DAY) else selectedRoutineTime.get(Calendar.HOUR)
 
-            }
+            mTimePicker = TimePickerDialog(appCompatActivity, this, hour,
+                    selectedRoutineTime.get(Calendar.MINUTE), is24Hour)
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-
-            }
+            mTimePicker.show()
         }
 
-        if (!TextUtils.isEmpty(title))
-            activityDesc!!.setText(title)
+        if (isTimeSelected)
+            time?.text = getTimeText(is24Hour, selectedRoutineTime.get(Calendar.HOUR_OF_DAY), selectedRoutineTime.get(Calendar.MINUTE))
 
-        activityDesc!!.addTextChangedListener(object : TextWatcher {
-            internal var hasTrackedFirstTextEvent: Boolean = false
-            internal var hasEditEventTracked: Boolean = false
+        btnAddActivity?.setOnClickListener { saveRoutine(true) }
 
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                if (TextUtils.isEmpty(s) && !hasTrackedFirstTextEvent) {
-                    trackEvent(GeneralAnalyticsConstants.USER_ENTERED_VALUE_IN_THE_TODO_ACTIVITY_TITLE_FIELD)
-                    hasTrackedFirstTextEvent = true
-                } else if (!TextUtils.isEmpty(s) && !hasEditEventTracked) {
-                    trackEvent(GeneralAnalyticsConstants.USER_UPDATED_VALUE_IN_THE_TODO_ACTIVITY_TITLE_FIELD)
-                    hasEditEventTracked = true
-                }
-            }
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable) {
-
-            }
-        })
-
-        timeFromView!!.setOnClickListener { v ->
-
-            isTimeFromClicked = true
-
-            if (selectedTime_from == null)
-                selectedTime_from = Calendar.getInstance()
-
-            val hour = if (is24Hour) selectedTime_from!!.get(Calendar.HOUR_OF_DAY) else selectedTime_from!!.get(Calendar.HOUR)
-
-            timePicker = TimePickerDialog(appCompatActivity, this, hour,
-                    selectedTime_from!!.get(Calendar.MINUTE), is24Hour)
-
-            timePicker!!.show()
-        }
-
-        if (selectedTime_from != null) {
-            timeFromView!!.text = getTimeText(is24Hour, selectedTime_from!!.get(Calendar.HOUR_OF_DAY), selectedTime_from!!.get(Calendar.MINUTE))
-        }
-
-        timeToView!!.setOnClickListener { v ->
-
-            isTimeFromClicked = false
-
-            if (selectedTime_to == null)
-                selectedTime_to = Calendar.getInstance()
-
-            val hour = if (is24Hour) selectedTime_to!!.get(Calendar.HOUR_OF_DAY) else selectedTime_to!!.get(Calendar.HOUR)
-
-            timePicker = TimePickerDialog(appCompatActivity, this, hour,
-                    selectedTime_to!!.get(Calendar.MINUTE), is24Hour)
-
-            timePicker!!.show()
-
-        }
-
-        if (selectedTime_to != null) {
-            timeToView!!.text = getTimeText(is24Hour, selectedTime_to!!.get(Calendar.HOUR_OF_DAY), selectedTime_to!!.get(Calendar.MINUTE))
-        }
-
-        btnAddActivity!!.setOnClickListener { v -> saveActivity(true) }
-
-        btnAddAnother!!.setOnClickListener { v -> saveActivity(false) }
+        btnAddAnother?.setOnClickListener { saveRoutine(false) }
     }
 
-    private fun saveActivity(dismissDialog: Boolean) {
+    private fun saveRoutine(dismissDialog: Boolean) {
 
-        trackEvent(if (dismissDialog)
-            if (isEdit) GeneralAnalyticsConstants.USER_CLICKED_DONE_BUTTON_ON_ADD_ACTIVITY_DIALOG else GeneralAnalyticsConstants.USER_CLICKED_ADD_BUTTON_ON_ADD_ACTIVITY_DIALOG
-        else
-            GeneralAnalyticsConstants.USER_CLICKED_ADD_ANOTHER_BUTTON_ON_ADD_ACTIVITY_DIALOG)
+        val routine = getRoutineObject() ?: return
 
-        val activity = activityObject ?: return
-
-        mListener!!.onSaveActivity(activity, isEdit)
+        mListener.onSaveRoutine(routine, isEdit)
 
         if (dismissDialog) {
             if (isAdded)
@@ -385,57 +203,71 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
         }
     }
 
-    private fun resetViews() {
-        activityDesc!!.setText("")
-        timeFromView!!.text = ""
-        timeToView!!.text = ""
-        resetCalendarRes()
-        prioritySpinner!!.setSelection(0)
-    }
+    private fun getRoutineObject(): Routine? {
 
-    private fun resetCalendarRes() {
-        selectedTime_from!!.time = mTodo!!.getDate()
-        selectedTime_to!!.time = mTodo!!.getDate()
-    }
-*/
-    override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
-        /*if (isTimeFromClicked) {
-            if (is24Hour) {
-                selectedTime_from!!.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                selectedTime_from!!.set(Calendar.MINUTE, minute)
-            } else {
-                selectedTime_from!!.set(Calendar.HOUR, hourOfDay % 12)
-                selectedTime_from!!.set(Calendar.MINUTE, minute)
-                selectedTime_from!!.set(Calendar.AM_PM, if (hourOfDay >= 12) Calendar.PM else Calendar.AM)
-            }
-            timeFromView!!.text = getTimeText(is24Hour, hourOfDay, minute)
+        titleText = title?.text.toString()
 
-            isTimeFromClicked = true
-            if (isTimeFromSet) {
-                trackEvent(GeneralAnalyticsConstants.USER_UPDATED_ACTIVITY_START_TIME)
-                isTimeFromSet = true
-            } else {
-                trackEvent(GeneralAnalyticsConstants.USER_SELECTED_ACTIVITY_START_TIME)
-            }
+        if (TextUtils.isEmpty(titleText)) {
+            title?.error = "Title cannot be empty"
+            return null
+        }
+
+        descText = desc?.text.toString()
+        if (TextUtils.isEmpty(descText)) {
+            desc?.error = "Description cannot be empty"
+            return null
+        }
+
+        if (!isTimeSelected) {
+            toast("Select time")
+            return null
+        }
+
+        if (selectedFrequencyIndex < 0) {
+            toast("Select a frequency")
+            return null
+        }
+
+        if (isEdit) {
+            mRoutine?.name = titleText
+            mRoutine?.desc = descText
+            mRoutine?.freqId = selectedFrequencyIndex
+            mRoutine?.date = selectedRoutineTime.time
+            return mRoutine
         } else {
-            if (is24Hour) {
-                selectedTime_to!!.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                selectedTime_to!!.set(Calendar.MINUTE, minute)
-            } else {
-                selectedTime_to!!.set(Calendar.HOUR, hourOfDay % 12)
-                selectedTime_to!!.set(Calendar.MINUTE, minute)
-                selectedTime_to!!.set(Calendar.AM_PM, if (hourOfDay >= 12) Calendar.PM else Calendar.AM)
-            }
-            timeToView!!.text = getTimeText(is24Hour, hourOfDay, minute)
+            return Routine(titleText, descText, selectedFrequencyIndex, selectedRoutineTime.time, selectedRoutineTime.time)
+        }
+    }
 
-            if (isTimeToSet) {
-                trackEvent(GeneralAnalyticsConstants.USER_UPDATED_ACTIVITY_END_TIME)
-                isTimeToSet = true
-            } else {
-                trackEvent(GeneralAnalyticsConstants.USER_SELECTED_ACTIVITY_END_TIME)
-            }
-        }*/
+    private fun resetViews() {
+        title?.setText("")
+        desc?.setText("")
+        time?.text = ""
+        freqSpinner?.setSelection(0)
 
+        if (isEdit)
+            selectedRoutineTime.time = mRoutine?.date
+    }
+
+    override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
+        isTimeSelected = true
+        if (is24Hour) {
+            selectedRoutineTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            selectedRoutineTime.set(Calendar.MINUTE, minute)
+        } else {
+            selectedRoutineTime.set(Calendar.HOUR, hourOfDay % 12)
+            selectedRoutineTime.set(Calendar.MINUTE, minute)
+            selectedRoutineTime.set(Calendar.AM_PM, if (hourOfDay >= 12) Calendar.PM else Calendar.AM)
+        }
+        time?.text = getTimeText(is24Hour, hourOfDay, minute)
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        selectedFrequencyIndex = position - 1
     }
 
     private fun getTimeText(is24Hour: Boolean, hourOfDay: Int, minute: Int): String {
@@ -447,70 +279,51 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-       /* outState.putLong(Constants.ARG_TIME_FROM, selectedTime_from!!.timeInMillis)
-        outState.putLong(Constants.ARG_TIME_TO, selectedTime_to!!.timeInMillis)
 
-        val title = activityDesc!!.text.toString().trim { it <= ' ' }
+        outState.putSerializable(Constants.ARG_LISTENER, mListener)
+        outState.putInt(Constants.ARG_ROUTINE_PRIORITY, selectedFrequencyIndex)
 
-        if (!TextUtils.isEmpty(title))
-            outState.putString(Constants.ARG_ACTIVITY_TITLE, title)
+        titleText = title?.text.toString()
+        descText = desc?.text.toString()
 
-        if (selectedPriority > 0)
-            outState.putInt(Constants.ARG_ACTIVITY_PRIORITY, selectedPriority)
+        if (!TextUtils.isEmpty(titleText))
+            outState.putString(Constants.ARG_ROUTINE_TITLE, titleText)
 
-        if (mListener != null)
-            outState.putSerializable(Constants.ARG_ACTIVITY_LISTENER, mListener)
+        if (!TextUtils.isEmpty(descText))
+            outState.putString(Constants.ARG_ROUTINE_DESC, descText)
 
-        if (mCurrentActivities != null)
-            outState.putParcelableArrayList(Constants.ARG_CURRENT_ACTIVITIES, mCurrentActivities as ArrayList<out Parcelable>?)
+        if (mRoutine != null)
+            outState.putParcelable(Constants.ARG_CURRENT_ROUTINE, mRoutine)
 
-        if (mTodo != null)
-            outState.putParcelable(Constants.ARG_CURRENT_TODO, mTodo)*/
+        if (isTimeSelected) {
+            outState.putLong(Constants.ARG_TIME, selectedRoutineTime.timeInMillis)
+            outState.putBoolean(Constants.ARG_IS_TIME_SELECTED, true)
+        }
     }
 
-    interface OnSaveActivity : Serializable {
-//        fun onSaveActivity(activity: TodoActivity, isEdit: Boolean)
+    interface OnSaveOccurrence : Serializable {
+        fun onSaveRoutine(routine: Routine, isEdit: Boolean)
     }
 
     companion object {
-
-        fun newInstance() : AddActivityDialogFragment{
+        fun newInstance(routine: Routine, listener: OnSaveOccurrence, isEdit: Boolean): AddActivityDialogFragment {
             val args = Bundle()
             val fragment = AddActivityDialogFragment()
-            fragment.arguments = args
-            return fragment
-        }
-
-        /*fun newInstance(todo: Todo, activity: TodoActivity, listener: OnSaveActivity, isEdit: Boolean): AddActivityDialogFragment {
-            val args = Bundle()
-            val fragment = AddActivityDialogFragment()
-            fragment.mTodo = todo
-            fragment.mCurrentActivity = activity
+            fragment.mRoutine = routine
             fragment.mListener = listener
             fragment.isEdit = isEdit
             fragment.arguments = args
             return fragment
         }
 
-        fun newInstance(todo: Todo, activityId: Int, listener: OnSaveActivity, isEdit: Boolean): AddActivityDialogFragment {
+        fun newInstance(listener: OnSaveOccurrence, isEdit: Boolean): AddActivityDialogFragment {
             val args = Bundle()
             val fragment = AddActivityDialogFragment()
-            fragment.mTodo = todo
-            fragment.mActivityId = activityId
             fragment.mListener = listener
             fragment.isEdit = isEdit
             fragment.arguments = args
             return fragment
         }
-
-        fun newInstance(todo: Todo, listener: OnSaveActivity): AddActivityDialogFragment {
-            val args = Bundle()
-            val fragment = AddActivityDialogFragment()
-            fragment.mTodo = todo
-            fragment.mListener = listener
-            fragment.arguments = args
-            return fragment
-        }*/
     }
 }
 

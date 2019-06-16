@@ -18,5 +18,17 @@
     <string name="mock_text_routine_freq_detail">Daily at 6:30AM</string>
     <string name="text_next_occurrence_elapse_time">Next in: <xliff:g example="59min, 59sec" id="next_occurrence_time">%s</xliff:g></string>
     <string name="text_empty_screen_detail_screen">There is no occurrence of this routine yet.</string>
+    <string name="text_empty_screen_routine_list">You have no routine added yet.\nAdd one by clicking on the ADD BUTTON</string>
     <string name="text_progress_status_emoji">progress_status_emoji</string>
+    <string name="text_done">DONE</string>
+    <string name="text_missed">MISSED</string>
+    <string name="mock_occurrence_date">Thurs, 24th May 2018</string>
+    <string name="text_select_a_frequency">Select a frequency</string>
+    <string name="text_edit_routine">Edit Routine</string>
+    <string name="text_invalid_action_identifier">Invalid action identifier</string>
+    <string name="prefix_text">custom://</string>
+    <string name="text_next_up_in_x">Next up in <xliff:g example="12 hours" id="no_of_hrs">%s</xliff:g></string>
+    <string name="text_delete_routine">Are you sure you want to delete this Routine?</string>
+    <string name="alert_dialog_negative_button_label">NO</string>
+    <string name="alert_dialog_positive_button_label">DELETE</string>
 </resources>

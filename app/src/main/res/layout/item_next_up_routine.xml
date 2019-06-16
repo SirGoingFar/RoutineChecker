@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dimen_8dp"
+    android:layout_marginLeft="@dimen/dimen_8dp"
+    android:layout_marginTop="@dimen/dimen_32dp"
+    android:layout_marginEnd="@dimen/dimen_8dp"
+    android:layout_marginRight="@dimen/dimen_8dp"
+    app:cardBackgroundColor="@color/colorWhite"
+    app:cardCornerRadius="@dimen/dimen_5dp"
+    app:cardElevation="@dimen/dimen_5dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_clickable_button"
+        android:padding="@dimen/dimen_16dp">
+
+        <TextView
+            android:id="@+id/tv_routine_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/mock_routine_name"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_routine_estimate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <TextView
+            android:id="@+id/tv_routine_estimate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/mock_routine_desc"
+            android:textColor="@color/colorBlack_opacity_75"
+            android:textSize="@dimen/text_14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_routine_name"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_routine_name"
+            app:layout_constraintRight_toRightOf="@+id/tv_routine_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_routine_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_routine_name" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

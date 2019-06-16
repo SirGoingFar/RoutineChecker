@@ -152,7 +152,7 @@
                 android:layout_height="1dp"
                 android:layout_marginStart="@dimen/dimen_8dp"
                 android:layout_marginLeft="@dimen/dimen_8dp"
-                android:background="@color/colorBlack"
+                android:background="@color/colorRaven"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintLeft_toRightOf="@+id/iv_icon_time"
                 app:layout_constraintRight_toLeftOf="@+id/guideline2"
@@ -166,9 +166,9 @@
                 android:layout_marginTop="32dp"
                 android:contentDescription="@string/icon_title"
                 android:src="@drawable/ic_refresh"
-                app:layout_constraintEnd_toStartOf="@+id/tv_routine_start_time"
+                app:layout_constraintEnd_toStartOf="@+id/spinner_routine_freq"
                 app:layout_constraintLeft_toRightOf="@+id/guideline1"
-                app:layout_constraintRight_toLeftOf="@+id/tv_routine_start_time"
+                app:layout_constraintRight_toLeftOf="@+id/spinner_routine_freq"
                 app:layout_constraintStart_toEndOf="@+id/guideline1"
                 app:layout_constraintTop_toBottomOf="@+id/iv_icon_time" />
 
@@ -176,14 +176,13 @@
                 android:id="@+id/spinner_routine_freq"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginLeft="@dimen/dimen_25dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_icon_freq"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintLeft_toRightOf="@+id/guideline1"
+                app:layout_constraintLeft_toRightOf="@+id/iv_icon_freq"
                 app:layout_constraintRight_toLeftOf="@+id/guideline2"
-                app:layout_constraintStart_toEndOf="@+id/guideline1"
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_freq"
                 app:layout_constraintTop_toTopOf="@+id/iv_icon_freq" />
 
             <Button

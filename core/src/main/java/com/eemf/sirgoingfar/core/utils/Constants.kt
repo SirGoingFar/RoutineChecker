@@ -2,31 +2,38 @@ package com.eemf.sirgoingfar.core.utils
 
 object Constants {
 
-    val ARG_START_DATE = "arg_start_date"
-    val ARG_CURRENT_TIME = "arg_current_time"
-    val ARG_TIME_FROM = "arg_time_from"
-    val ARG_TIME_TO = "arg_time_to"
-    val ARG_ACTIVITY_TITLE = "arg_activity_title"
-    val ARG_ACTIVITY_PRIORITY = "arg_activity_priority"
-    val ARG_ACTIVITY_LISTENER = "arg_activity_listener"
-    val ARG_CURRENT_ACTIVITIES = "arg_current_activity"
-    val ARG_CURRENT_TODO = "arg_current_todo"
+    const val ARG_START_DATE = "arg_start_date"
+    const val ARG_TIME = "arg_time"
+    const val ARG_IS_TIME_SELECTED = "arg_is_time_selected"
+    const val ARG_ROUTINE_DESC = "arg_routine_desc"
+    const val ARG_ROUTINE_TITLE = "arg_routine_title"
+    const val ARG_ROUTINE_PRIORITY = "arg_routine_priority"
+    const val ARG_LISTENER = "arg_listener"
+    const val ARG_CURRENT_ROUTINE = "arg_current_routine"
 
-    var STANDARD_PASSWORD_LENGTH = 6
-    val MINIMUM_TITLE_TEXT = 5
+    const val MINIMUM_PASS_MARK = 70
+    const val MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS = 5 * 60 * 1000 //notify when it's 5 minutes to a routine
+    const val WAITING_TIME_BEFORE_MARKED_AS_MISSED = 5 * 60 * 1000 //wait for 5 minutes after routine has expired before marking as MISSED routine
+    const val MAXIMUM_ROUTINE_DURATION_MILLIS = 15 * 60 * 1000 //all routine have a maximum execution time of 15 minutes
 
-    enum class Priority private constructor(val id: Int, val title: String) {
-        NONE(0, "No priority"),
-        LOW(1, "Low priority"),
-        MEDIUM(2, "Medium priority"),
-        HIGH(3, "High priority")
-    }
+    const val TWELVE_HOURS_IN_MILLIS = 12 * 60 * 100
 
-    enum class Status private constructor(val id: Int, val title: String) {
+    enum class Status(val id: Int, val label: String) {
+        UNKNOWN(0, "Unknown"),
+        PROGRESS(1, "In Progress"),
+        DONE(2, "Done"),
+        MISSED(3, "Missed");
 
-        PENDING(0, "Pending"),
-        DONE(1, "Done"),
-        MISSED(2, "Missed"),
-        SHIFTED(3, "Shifted")
+        companion object {
+            fun getStatusById(id: Int): Status? {
+                return when (id) {
+                    0 -> UNKNOWN
+                    1 -> PROGRESS
+                    2 -> DONE
+                    3 -> MISSED
+                    else -> null
+                }
+            }
+        }
     }
 }
