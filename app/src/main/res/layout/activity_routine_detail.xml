@@ -74,8 +74,7 @@
                     android:layout_height="?actionBarSize"
                     android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/Theme.AppCompat.DayNight.DarkActionBar"
-                    app:title="@string/text_next_occurrence_elapse_time" />
+                    app:popupTheme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
