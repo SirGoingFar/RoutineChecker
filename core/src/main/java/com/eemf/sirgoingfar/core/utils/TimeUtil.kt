@@ -13,7 +13,7 @@ object TimeUtil {
         val VALUE_0: Long = 0
 
         if (diff < VALUE_0)
-            throw IllegalArgumentException("Time difference can't be NEGATIVE")
+            return "-"
 
         val secondsInMillis: Long = 1000
         val minutesInMillis = secondsInMillis * 60

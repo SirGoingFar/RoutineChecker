@@ -9,7 +9,12 @@ import com.eemf.sirgoingfar.core.utils.ParcelableUtil
 import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.AppDatabase
 import com.eemf.sirgoingfar.database.RoutineOccurrence
+import com.eemf.sirgoingfar.routinechecker.notification.NotificationHelper
 import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NotificationActionService : Service() {
 
@@ -38,19 +43,31 @@ class NotificationActionService : Service() {
 
         when (serviceAction) {
             ACTION_UPDATE_ROUTINE -> {
+                GlobalScope.launch {
+                    updateRoutineOccurrence(occurrence)
+                }
+            }
+        }
+        return START_NOT_STICKY
+    }
+
+    private suspend fun updateRoutineOccurrence(occurrence: RoutineOccurrence) {
+        val job = GlobalScope.launch {
+            withContext(Dispatchers.IO) {
                 //update Routines's Status and update the database
-                val mDb = AppDatabase.getInstance(this)
+                val mDb = AppDatabase.getInstance(this@NotificationActionService)
                 val currentOccurrence: RoutineOccurrence? = mDb?.dao?.getRoutineOccurrenceByAlarmId(occurrence.alarmId)
 
                 if (currentOccurrence?.status == Constants.Status.PROGRESS.id) {
                     //If the user hasn't changed the status, toggle it
                     currentOccurrence.status = Constants.Status.DONE.id
                     mDb.dao.updateOccurrence(currentOccurrence)
+                    NotificationHelper(this@NotificationActionService).removeNotification()
                 }
             }
         }
 
-        return START_NOT_STICKY
+        job.join()
     }
 
     companion object {

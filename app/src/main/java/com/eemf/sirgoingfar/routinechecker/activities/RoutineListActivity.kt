@@ -68,7 +68,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
         fun refreshPage(routineList: List<Routine>) {
 
-            addOrRemoveMenuOption(routineList.isNotEmpty(), R.id.action_next_up)
+            addOrRemoveMenuOption(model.mNextUpList.isNotEmpty(), R.id.action_next_up)
 
             if (routineList.isEmpty()) {
                 mState.setNoData()
@@ -147,6 +147,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
                 mActivity.application, mActivity) as RoutineListActivityViewModel
 
         private var mRoutineList: List<Routine>? = null
+        lateinit var mNextUpList: ArrayList<NextUpRoutine>
 
         init {
 
@@ -156,7 +157,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
                     return@Observer
 
                 mRoutineList = it
-
+                mNextUpList = getNextUpRoutinelist(mRoutineList!!)
                 refreshPage(it)
 
                 if (isAddition) {
@@ -246,18 +247,18 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
     private fun openNextUpActivity() {
         val intent = Intent(this, NextUpActivity::class.java)
-        intent.putParcelableArrayListExtra(NextUpActivity.EXTRA_NEXT_UP_ROUTINE_LIST,
-                getNextUpRoutinelist(model.getCurrentRoutineList()))
+        intent.putParcelableArrayListExtra(NextUpActivity.EXTRA_NEXT_UP_ROUTINE_LIST, model.mNextUpList)
         startActivity(intent)
     }
 
     fun getNextUpRoutinelist(routineList: List<Routine>): ArrayList<NextUpRoutine> {
         val list: ArrayList<NextUpRoutine> = ArrayList()
-        val cal: Calendar = Calendar.getInstance()
 
         for (routine: Routine in routineList) {
-            if (routine.nextRoutineDate?.time!!.minus(cal.time.time) <= Constants.TWELVE_HOURS_IN_MILLIS) {
-                list.add(NextUpRoutine(routine.name, Helper.getUpNext(routine.freqId, routine.nextRoutineDate)))
+            val nextTime = routine.nextRoutineDate!!.time
+            val now = Calendar.getInstance().timeInMillis
+            if (nextTime > now && nextTime - now <= Constants.TWELVE_HOURS_IN_MILLIS) {
+                list.add(NextUpRoutine(routine.name, Helper.getUpNext(routine.freqId, routine.date)))
             }
         }
 

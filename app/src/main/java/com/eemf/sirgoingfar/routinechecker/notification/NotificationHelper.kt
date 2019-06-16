@@ -57,7 +57,6 @@ class NotificationHelper(private val context: Context) {
                 .setLights(param.lightColor, 500, 1000)
                 .setSubText(context.getString(R.string.app_name))
                 .setVibrate(longArrayOf(0, 1000, 1000, 1000, 1000))
-                .setOngoing(!param.isDismissable)
                 .setAutoCancel(param.isAutoCancel)
 
         if (!TextUtils.isEmpty(param.btnOneText)) {
