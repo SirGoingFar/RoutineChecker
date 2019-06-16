@@ -25,4 +25,6 @@
     <string name="mock_occurrence_date">Thurs, 24th May 2018</string>
     <string name="text_select_a_frequency">Select a frequency</string>
     <string name="text_edit_routine">Edit Routine</string>
+    <string name="text_invalid_action_identifier">Invalid action identifier</string>
+    <string name="prefix_text">custom://</string>
 </resources>

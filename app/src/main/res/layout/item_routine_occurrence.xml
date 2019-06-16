@@ -28,7 +28,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginBottom="@dimen/dimen_8dp">
+            app:layout_goneMarginBottom="@dimen/dimen_16dp">
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline"
@@ -64,20 +64,21 @@
                 android:fontFamily="sans-serif-thin"
                 android:gravity="center"
                 android:text="@string/text_done"
+                android:textAllCaps="true"
                 android:textColor="@color/colorDone"
                 android:textSize="@dimen/dimen_12sp"
-                app:layout_constraintBottom_toTopOf="@+id/horizontal_rule"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_occurrence_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/guideline"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/tv_occurrence_date" />
 
             <View
                 android:id="@+id/horizontal_rule"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dimen_2dp"
-                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
                 android:background="@color/colorGrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -116,6 +117,7 @@
             android:text="@string/text_missed"
             android:textColor="@color/btn_category"
             android:textSize="@dimen/text_14sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/btn_done"

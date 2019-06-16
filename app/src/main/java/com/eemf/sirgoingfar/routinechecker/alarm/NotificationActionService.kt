@@ -7,9 +7,14 @@ import android.media.AudioManager
 import android.os.IBinder
 import android.text.TextUtils
 import com.eemf.sirgoingfar.core.utils.App
+import com.eemf.sirgoingfar.core.utils.Constants
+import com.eemf.sirgoingfar.core.utils.ParcelableUtil
 import com.eemf.sirgoingfar.core.utils.Prefs
+import com.eemf.sirgoingfar.database.AppDatabase
+import com.eemf.sirgoingfar.database.RoutineOccurrence
+import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 
-class RingtoneService : Service() {
+class NotificationActionService : Service() {
 
     private var pref: Prefs? = null
 
@@ -27,6 +32,12 @@ class RingtoneService : Service() {
         if (TextUtils.isEmpty(serviceAction))
             return START_NOT_STICKY
 
+        if (!intent.hasExtra(AlarmHelper.KEY_EXTRA_OCCURRENCE))
+            return START_STICKY
+
+        val occurrenceByte = intent.getByteArrayExtra(AlarmHelper.KEY_EXTRA_OCCURRENCE)
+        val occurrence = ParcelableUtil.unmarshall(occurrenceByte, RoutineOccurrence.CREATOR)
+
         val mediaPlayer = App.mediaPlayer
 
         when (serviceAction) {
@@ -40,9 +51,7 @@ class RingtoneService : Service() {
                 }
 
                 toggleAudioManagerSetting(true)
-                if (mediaPlayer != null) {
-                    mediaPlayer.start()
-                }
+                mediaPlayer?.start()
             }
 
             ACTION_STOP_RINGTONE -> {
@@ -51,10 +60,23 @@ class RingtoneService : Service() {
                         return START_NOT_STICKY
                 }
 
-                if (mediaPlayer != null) {
-                    mediaPlayer.stop()
-                }
+                mediaPlayer?.stop()
                 toggleAudioManagerSetting(false)
+            }
+
+            ACTION_UPDATE_ROUTINE -> {
+                //stop the ringing tone
+                toggleAudioManagerSetting(false)
+
+                //update Routines's Status and update the database
+                val mDb = AppDatabase.getInstance(this)
+                val currentOccurrence: RoutineOccurrence? = mDb?.dao?.getRoutineOccurrenceByAlarmId(occurrence.alarmId)
+
+                if (currentOccurrence?.status == Constants.Status.PROGRESS.id) {
+                    //If the user hasn't changed the status, toggle it
+                    currentOccurrence.status = Constants.Status.DONE.id
+                    mDb.dao.updateOccurrence(currentOccurrence)
+                }
             }
         }
 
@@ -96,9 +118,10 @@ class RingtoneService : Service() {
     }
 
     companion object {
-        val EXTRA_KEY_ALARM_ID = "extra_key_alarm_id"
-        val ACTION_START_RINGTONE = "action_start_ringtone"
-        val ACTION_STOP_RINGTONE = "action_stop_ringtone"
+        const val EXTRA_KEY_ALARM_ID = "extra_key_alarm_id"
+        const val ACTION_START_RINGTONE = "action_start_ringtone"
+        const val ACTION_STOP_RINGTONE = "action_stop_ringtone"
+        const val ACTION_UPDATE_ROUTINE = "action_update_routine"
     }
 
 }

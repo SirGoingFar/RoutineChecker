@@ -4,4 +4,8 @@
     <string name="text_unavailable">Unavailable</string>
     <string name="routine_detail_text"><xliff:g example="Weekly" id="Freq">%1s</xliff:g> at <xliff:g example="6:45 PM" id="time">%2s</xliff:g></string>
     <string name="routine_next_occurrence_text">Up next in <xliff:g example="1 day, 23hr, 16mins" id="time">%s</xliff:g></string>
+    <string name="text_push_title">ATTENTION: It\'s almost time for this routine:</string>
+    <string name="text_push_btn_one_label">Mute</string>
+    <string name="text_push_btn_two_label">Done</string>
+    <string name="notif_body"><xliff:g example="Running" id="name">%1s</xliff:g>(<xliff:g example="Body fitness" id="desc">%2s</xliff:g>): <xliff:g example="6:00 AM" id="time">%3s</xliff:g></string>
 </resources>

@@ -1,6 +1,7 @@
 package com.eemf.sirgoingfar.routinechecker.adapters
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -34,14 +35,21 @@ class RoutineOccurrenceRecyclerViewAdapter(private val mContext: Context, privat
                 ?: mContext.getString(R.string.text_unavailable)
         viewHolder.tvOccurrenceStatus?.text = Constants.Status.getStatusById(currentItem.status)?.label
 
+        if (currentItem.status == Constants.Status.DONE.id)
+            viewHolder.tvOccurrenceStatus?.setTextColor(ContextCompat.getColor(mContext, R.color.colorDone))
+        else
+            viewHolder.tvOccurrenceStatus?.setTextColor(ContextCompat.getColor(mContext, R.color.colorMissed))
+
         if (currentItem.status == Constants.Status.PROGRESS.id) {
             viewHolder.btnDone?.visibility = View.VISIBLE
             viewHolder.btnMissed?.visibility = View.VISIBLE
+            viewHolder.divider?.visibility = View.VISIBLE
             viewHolder.btnDone?.setOnClickListener { mListener.onDoneBtnClick(viewHolder.adapterPosition, currentItem) }
             viewHolder.btnMissed?.setOnClickListener { mListener.onMissedBtnClick(viewHolder.adapterPosition, currentItem) }
         } else {
             viewHolder.btnDone?.visibility = View.GONE
             viewHolder.btnMissed?.visibility = View.GONE
+            viewHolder.divider?.visibility = View.GONE
         }
     }
 
@@ -71,6 +79,10 @@ class RoutineOccurrenceRecyclerViewAdapter(private val mContext: Context, privat
         @JvmField
         var btnMissed: TextView? = null
 
+        @BindView(R.id.horizontal_rule)
+        @JvmField
+        var divider: View? = null
+
 
         init {
             ButterKnife.bind(this, itemView)
@@ -78,6 +90,7 @@ class RoutineOccurrenceRecyclerViewAdapter(private val mContext: Context, privat
             tvOccurrenceStatus = itemView.findViewById(R.id.tv_occurrence_status)
             btnDone = itemView.findViewById(R.id.btn_done)
             btnMissed = itemView.findViewById(R.id.btn_missed)
+            divider = itemView.findViewById(R.id.horizontal_rule)
         }
 
         fun currentItem(): RoutineOccurrence {

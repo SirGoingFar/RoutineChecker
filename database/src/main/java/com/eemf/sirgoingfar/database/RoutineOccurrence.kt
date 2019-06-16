@@ -24,12 +24,26 @@ class RoutineOccurrence() : Parcelable {
     @ColumnInfo(name = "occurrence_date")
     var occurrenceDate: Date? = null
 
+    @ColumnInfo(name = "alarm_id")
+    var alarmId: Int = 0
+
+    var name: String? = null
+
+    var desc: String? = null
+
+    @ColumnInfo(name = "frequency_id")
+    var freqId: Int = 0
+
     @Ignore
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()
         routineId = parcel.readInt()
         status = parcel.readInt()
         occurrenceDate = Date(parcel.readLong())
+        alarmId = parcel.readInt()
+        name = parcel.readString()
+        desc = parcel.readString()
+        freqId = parcel.readInt()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -37,20 +51,32 @@ class RoutineOccurrence() : Parcelable {
         parcel.writeInt(routineId)
         parcel.writeInt(status)
         parcel.writeLong(occurrenceDate?.time ?: 0)
+        parcel.writeInt(alarmId)
+        parcel.writeString(name)
+        parcel.writeString(desc)
+        parcel.writeInt(freqId)
     }
 
-    constructor(id: Int, routineId: Int, status: Int, occurrenceDate: Date?) : this() {
+    constructor(id: Int, routineId: Int, status: Int, occurrenceDate: Date?, alarmId: Int, name: String?, desc: String?, freqId: Int) : this() {
         this.id = id
         this.routineId = routineId
         this.status = status
         this.occurrenceDate = occurrenceDate
+        this.alarmId = alarmId
+        this.name = name
+        this.desc = desc
+        this.freqId = freqId
     }
 
     @Ignore
-    constructor(routineId: Int, status: Int, occurrenceDate: Date?) : this() {
+    constructor(routineId: Int, status: Int, occurrenceDate: Date?, alarmId: Int, name: String?, desc: String?, freqId: Int) : this() {
         this.routineId = routineId
         this.status = status
         this.occurrenceDate = occurrenceDate
+        this.alarmId = alarmId
+        this.name = name
+        this.desc = desc
+        this.freqId = freqId
     }
 
     override fun describeContents(): Int {

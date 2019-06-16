@@ -9,13 +9,17 @@ import android.view.MenuItem
 import android.view.View
 import butterknife.ButterKnife
 import com.eemf.sirgoingfar.core.custom.AbsViewHolder
+import com.eemf.sirgoingfar.core.utils.Constants
+import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.Routine
+import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.R
 import com.eemf.sirgoingfar.routinechecker.adapters.RoutineListRecyclerViewAdapter
 import com.eemf.sirgoingfar.routinechecker.dialog_fragments.AddActivityDialogFragment
 import com.eemf.sirgoingfar.routinechecker.viewmodels.BaseViewModel
 import com.eemf.sirgoingfar.routinechecker.viewmodels.RoutineListActivityViewModel
 import com.eemf.sirgoingfar.routinechecker.viewmodels.ViewModelModule
+import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 import kotlinx.android.synthetic.main.activity_routine_list.*
 
 class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRoutineClickListener,
@@ -128,6 +132,14 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
                     return@Observer
 
                 refreshPage(it)
+
+                if (isAddition) {
+                    isAddition = false
+                    val addedRoutine = it[it.size - 1]
+                    val occurrence = RoutineOccurrence(addedRoutine.id, Constants.Status.UNKNOWN.id, addedRoutine.date,
+                            Prefs.getsInstance().nextAlarmId, addedRoutine.name, addedRoutine.desc, addedRoutine.freqId)
+                    AlarmHelper().execute(occurrence, AlarmHelper.ACTION_SCHEDULE_ALARM)
+                }
             })
 
             //Observe for UI state change
@@ -150,6 +162,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
     private lateinit var views: ViewHolder
     private lateinit var model: Model
     private var mMenu: Menu? = null
+    private var isAddition: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -188,6 +201,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
     }
 
     override fun onSaveRoutine(routine: Routine, isEdit: Boolean) {
+        isAddition = !isEdit
         model.saveRoutine(routine)
     }
 

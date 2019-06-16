@@ -1,91 +1,107 @@
-package com.eemf.sirgoingfar.routinechecker.alarm
+package com.eemf.sirgoingfar.timely.alarm
 
-class AlarmHelper/*public static final int ACTION_SCHEDULE_ALARM = 0;
-    public static final int ACTION_UPDATE_ALARM = 1;
-    public static final int ACTION_DELETE_ALARM = 2;
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.os.Build.VERSION.SDK_INT
+import android.os.Build.VERSION_CODES.KITKAT
+import com.eemf.sirgoingfar.core.utils.App
+import com.eemf.sirgoingfar.core.utils.Constants
+import com.eemf.sirgoingfar.core.utils.Helper
+import com.eemf.sirgoingfar.core.utils.ParcelableUtil
+import com.eemf.sirgoingfar.database.AppDatabase
+import com.eemf.sirgoingfar.database.RoutineOccurrence
+import com.eemf.sirgoingfar.routinechecker.R
+import com.eemf.sirgoingfar.routinechecker.alarm.AlarmReceiver
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
-    public static final String KEY_EXTRA_ACTIVITY = "key_extra_activity";
+class AlarmHelper {
 
-    private AlarmManager mAlarmManager;
-    private Context mContext;
+    private var mAlarmManager: AlarmManager? = null
+    private var mContext: Context? = null
 
-    public AlarmHelper() {
+    init {
         if (mContext == null)
-            mContext = App.getsInstance().getAppContext();
+            mContext = App.getsInstance()?.appContext
 
         if (mAlarmManager == null)
-            mAlarmManager = (AlarmManager) App.getsInstance().getAppContext()
-                    .getSystemService(Context.ALARM_SERVICE);
+            mAlarmManager = App.getsInstance()?.appContext
+                    ?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
 
-    public void execute(final TodoActivity activity, final int action) {
-        if(Helper.hasTimePassed(activity.getStartTime()))
-            return;
+    fun execute(occurrence: RoutineOccurrence?, action: Int) {
+        runBlocking {
+            launch(Dispatchers.IO) {
+                if (action < 0)
+                    throw IllegalArgumentException(mContext?.getString(R.string.text_invalid_action_identifier))
 
-        new Thread(() -> {
-            if (activity == null)
-                throw new IllegalArgumentException(mContext.getString(R.string.text_activity_is_null));
+                when (action) {
+                    ACTION_SCHEDULE_ALARM -> schedule(occurrence, false)
 
-            if (action < 0)
-                throw new IllegalArgumentException(mContext.getString(R.string.text_invalid_action_identifier));
+                    ACTION_UPDATE_ALARM -> update(occurrence)
 
-            switch (action) {
-                case ACTION_SCHEDULE_ALARM:
-                    schedule(activity, false);
-                    break;
-
-                case ACTION_UPDATE_ALARM:
-                    update(activity);
-                    break;
-
-                case ACTION_DELETE_ALARM:
-                    delete(activity);
-                    break;
+                    ACTION_DELETE_ALARM -> delete(occurrence)
+                }
             }
-        }).run();
+        }
     }
 
-    public void execute(List<TodoActivity> activityList, int action) {
-        new Thread(() -> {
-            for (TodoActivity activity : activityList)
-                execute(activity, action);
-        }).run();
+    private fun delete(occurrence: RoutineOccurrence?) {
+        val pendingIntent = getPendingIntentFor(occurrence, false)
+        mAlarmManager?.cancel(pendingIntent)
     }
 
-    private void delete(TodoActivity activity) {
-        PendingIntent pendingIntent = getPendingIntentFor(activity, false);
-        mAlarmManager.cancel(pendingIntent);
-    }
-
-    private void update(TodoActivity activity) {
-        //delete the previously scheduled alarm for this activity
-        delete(activity);
+    private fun update(occurrence: RoutineOccurrence?) {
+        //delete the previously scheduled alarm for this occurrence
+        delete(occurrence)
 
         //re-schedule
-        schedule(activity, true);
+        schedule(occurrence, true)
     }
 
-    private void schedule(TodoActivity activity, boolean isUpdate) {
-        PendingIntent pendingIntent = getPendingIntentFor(activity, isUpdate);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mAlarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, activity.getStartTime().getTime(), pendingIntent);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, activity.getStartTime().getTime(), pendingIntent);
-        } else {
-            mAlarmManager.set(AlarmManager.RTC_WAKEUP, activity.getStartTime().getTime(), pendingIntent);
+    private fun schedule(occurrence: RoutineOccurrence?, isUpdate: Boolean) {
+
+        if (Helper.hasTimePassed(occurrence?.occurrenceDate!!))
+            occurrence.occurrenceDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
+
+        val pendingIntent = getPendingIntentFor(occurrence, isUpdate)
+        val alarmTime = (occurrence.occurrenceDate!!.time - Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS)
+        when {
+            SDK_INT >= Build.VERSION_CODES.M -> mAlarmManager?.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent)
+            SDK_INT >= KITKAT -> mAlarmManager?.setExact(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent)
+            else -> mAlarmManager?.set(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent)
         }
+
+        //create the Occurrrence
+        val mDb = AppDatabase.getInstance(mContext!!)
+        mDb?.dao?.addOccurrence(occurrence)
     }
 
-    private PendingIntent getPendingIntentFor(TodoActivity activity, boolean isUpdate) {
-        Intent alarmIntent = new Intent(mContext, AlarmReceiver.class);
-        byte[] activityByte = ParcelableUtil.marshall(activity);
-        alarmIntent.putExtra(KEY_EXTRA_ACTIVITY, activityByte);
-        alarmIntent.setData(Uri.parse(mContext.getString(R.string.prefix_text) + activity.getAlarmId()));
-        alarmIntent.setAction(String.valueOf(activity.getAlarmId()));
+    private fun getPendingIntentFor(occurrence: RoutineOccurrence?, isUpdate: Boolean): PendingIntent {
+        val alarmIntent = Intent(mContext, AlarmReceiver::class.java)
+        val occurrenceByte = ParcelableUtil.marshall(occurrence!!)
+        alarmIntent.putExtra(KEY_EXTRA_OCCURRENCE, occurrenceByte)
+        alarmIntent.data = Uri.parse(mContext?.getString(R.string.prefix_text) + occurrence.alarmId)
+        alarmIntent.action = occurrence.alarmId.toString()
 
         if (isUpdate) {
-            alarmIntent.putExtra(AlarmReceiver.EXTRA_KEY_ALARM_RECEIVER_ACTION, AlarmReceiver.ALARM_ACTION_UPDATE_ALARM);
+            alarmIntent.putExtra(AlarmReceiver.EXTRA_KEY_ALARM_RECEIVER_ACTION, AlarmReceiver.ALARM_ACTION_UPDATE_ALARM)
         }
 
-        return PendingIntent.getBroadcast(mContext, activity.getAlarmId(), alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-    }*/
+        return PendingIntent.getBroadcast(mContext, occurrence.alarmId, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
+    companion object {
+
+        const val ACTION_SCHEDULE_ALARM = 0
+        const val ACTION_UPDATE_ALARM = 1
+        const val ACTION_DELETE_ALARM = 2
+
+        const val KEY_EXTRA_OCCURRENCE = "key_extra_occurrence"
+    }
+}

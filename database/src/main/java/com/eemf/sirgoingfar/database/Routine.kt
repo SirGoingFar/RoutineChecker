@@ -23,20 +23,34 @@ class Routine() : Parcelable {
     @ColumnInfo(name = "routine_time")
     var date: Date? = null
 
+    @ColumnInfo(name = "last_routine_date")
+    var lastRoutineDate: Date? = null
+
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()
         name = parcel.readString()
         desc = parcel.readString()
         freqId = parcel.readInt()
         date = Date(parcel.readLong())
+        lastRoutineDate = Date(parcel.readLong())
     }
 
-    constructor(id: Int, name: String?, desc: String?, freqId: Int, date: Date?) : this() {
+    constructor(id: Int, name: String?, desc: String?, freqId: Int, date: Date?, lastRoutineDate: Date?) : this() {
         this.id = id
         this.name = name
         this.desc = desc
         this.freqId = freqId
         this.date = date
+        this.lastRoutineDate = lastRoutineDate
+    }
+
+    @Ignore
+    constructor(name: String?, desc: String?, freqId: Int, date: Date?, lastRoutineDate: Date?) : this() {
+        this.name = name
+        this.desc = desc
+        this.freqId = freqId
+        this.date = date
+        this.lastRoutineDate = lastRoutineDate
     }
 
     @Ignore
@@ -53,6 +67,7 @@ class Routine() : Parcelable {
         parcel.writeString(desc)
         parcel.writeInt(freqId)
         parcel.writeLong(date?.time ?: 0)
+        parcel.writeLong(lastRoutineDate?.time ?: 0)
     }
 
     override fun describeContents(): Int {

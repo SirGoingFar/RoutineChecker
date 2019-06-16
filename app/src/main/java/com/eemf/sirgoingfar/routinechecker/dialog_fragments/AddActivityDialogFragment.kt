@@ -234,7 +234,7 @@ class AddActivityDialogFragment : BaseDialogFragment(), TimePickerDialog.OnTimeS
             mRoutine?.date = selectedRoutineTime.time
             return mRoutine
         } else {
-            return Routine(titleText, descText, selectedFrequencyIndex, selectedRoutineTime.time)
+            return Routine(titleText, descText, selectedFrequencyIndex, selectedRoutineTime.time, selectedRoutineTime.time)
         }
     }
 

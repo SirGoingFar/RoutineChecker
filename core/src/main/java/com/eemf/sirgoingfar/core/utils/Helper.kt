@@ -18,8 +18,8 @@ object Helper {
         return list
     }
 
-    fun hasTimePassed(activityStartTime: Date): Boolean {
-        return Calendar.getInstance().timeInMillis > activityStartTime.time
+    fun hasTimePassed(date: Date): Boolean {
+        return Calendar.getInstance().timeInMillis >= date.time
     }
 
     fun getTimeStringFromDate(context: Context, date: Date?): String? {
@@ -61,8 +61,7 @@ object Helper {
         return context.getString(R.string.routine_next_occurrence_text, timeText)
     }
 
-    private fun getUpNext(freqId: Int, date: Date?): String? {
-
+    fun computeNextRoutineTime(freqId: Int, date: Date?): Date? {
         val cal: Calendar = Calendar.getInstance()
         cal.isLenient = false
         cal.time = date
@@ -81,7 +80,11 @@ object Helper {
             else -> return null
         }
 
-        return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, cal.timeInMillis)
+        return cal.time
+    }
+
+    private fun getUpNext(freqId: Int, date: Date?): String? {
+        return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, computeNextRoutineTime(freqId, date)!!.time)
     }
 
     fun getDateString(date: Date?): String? {
