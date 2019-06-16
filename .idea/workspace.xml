@@ -9,29 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bafb52fb-361a-4fd0-9fba-1a3f25793e4a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/notification/NotificationHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/notification/NotificationHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/Helper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt" afterDir="false" />
-    </list>
+    <list default="true" id="bafb52fb-361a-4fd0-9fba-1a3f25793e4a" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-267">
-              <caret line="49" column="108" selection-start-line="49" selection-start-column="108" selection-end-line="49" selection-end-column="108" />
+            <state relative-caret-position="172">
+              <caret line="57" column="75" selection-start-line="57" selection-start-column="75" selection-end-line="57" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -73,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="821">
-              <caret line="55" column="41" lean-forward="true" selection-start-line="55" selection-start-column="41" selection-end-line="55" selection-end-column="41" />
+            <state relative-caret-position="64">
+              <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -82,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+            <state relative-caret-position="343">
+              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -116,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
-              <caret line="62" column="68" lean-forward="true" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
+              <caret line="62" column="68" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -129,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
-              <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+              <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -220,10 +198,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt" />
         <option value="$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineListActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt" />
       </list>
     </option>
   </component>
@@ -371,7 +349,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="462" y="0" width="1218" height="977" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49896264" weight="0.33201268" />
@@ -386,10 +363,10 @@
       <window_info anchor="bottom" id="Logcat" order="2" weight="0.33026466" />
       <window_info anchor="bottom" id="TODO" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.49585062" />
-      <window_info anchor="bottom" id="Terminal" order="5" weight="0.6766398" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="5" visible="true" weight="0.6766398" />
       <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.39355582" />
-      <window_info active="true" anchor="bottom" id="Debug" order="8" visible="true" weight="0.3785961" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.3785961" />
       <window_info anchor="bottom" id="Android Profiler" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -510,12 +487,6 @@
           <line>259</line>
           <properties />
           <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt</url>
-          <line>27</line>
-          <properties />
-          <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/android.arch.persistence.room/common/1.1.1/f8a350afcb2385f4fef5394897364edfdebd4929/common-1.1.1-sources.jar!/android/arch/persistence/room/Update.java</url>
@@ -841,31 +812,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmHelper.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="605">
           <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-267">
-          <caret line="49" column="108" selection-start-line="49" selection-start-column="108" selection-end-line="49" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="821">
-          <caret line="55" column="41" lean-forward="true" selection-start-line="55" selection-start-column="41" selection-end-line="55" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -879,14 +829,35 @@
     <entry file="file://$PROJECT_DIR$/core/src/main/java/com/eemf/sirgoingfar/core/utils/TimeUtil.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/activities/RoutineDetailActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
-          <caret line="62" column="68" lean-forward="true" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
+          <caret line="62" column="68" selection-start-line="62" selection-start-column="68" selection-end-line="62" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/NotificationActionService.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/jobs/SImulatedJob.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/eemf/sirgoingfar/routinechecker/alarm/AlarmReceiver.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="57" column="75" selection-start-line="57" selection-start-column="75" selection-end-line="57" selection-end-column="75" />
         </state>
       </provider>
     </entry>

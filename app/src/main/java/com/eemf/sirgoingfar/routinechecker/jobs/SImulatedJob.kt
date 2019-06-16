@@ -20,9 +20,9 @@ class SimulatedJob(private val context: Context, private val occurrence: Routine
 
         delay((Constants.MAXIMUM_ROUTINE_DURATION_MILLIS + Constants.WAITING_TIME_BEFORE_MARKED_AS_MISSED).toLong())
 
-        if (currentOccurrence?.status == Constants.Status.PROGRESS.id) {
+        if (currentOccurrence?.status != Constants.Status.DONE.id) {
             //If the user hasn't changed the status, toggle it to MISSED
-            currentOccurrence.status = Constants.Status.MISSED.id
+            currentOccurrence!!.status = Constants.Status.MISSED.id
             mDb.dao.updateOccurrence(currentOccurrence)
         }
 
