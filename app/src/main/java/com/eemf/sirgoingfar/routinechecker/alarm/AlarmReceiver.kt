@@ -8,6 +8,7 @@ import android.support.v4.app.NotificationCompat
 import com.eemf.sirgoingfar.core.utils.Constants
 import com.eemf.sirgoingfar.core.utils.Helper
 import com.eemf.sirgoingfar.core.utils.ParcelableUtil
+import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.AppDatabase
 import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.R
@@ -35,7 +36,6 @@ class AlarmReceiver : BroadcastReceiver() {
         param.title = context.getString(R.string.text_push_title)
         param.body = getNotifBody(context, occurrence)
         param.priorityType = NotificationCompat.PRIORITY_HIGH
-        param.isDismissable = true
         param.btnOneText = context.getString(R.string.text_push_btn_two_label)
         param.btnOnePendingIntent = getRoutineUpdatePendingIntent(context, occurrence)
         param.bodyPendingIntent = getLaunchAppPendingIntent(context, occurrence.alarmId)
@@ -43,23 +43,34 @@ class AlarmReceiver : BroadcastReceiver() {
         notifHelper.notifyUser(param)
 
         GlobalScope.launch(Dispatchers.Default) {
-            doIo(context, occurrence)
+            updateOccurrence(context, occurrence)
         }
     }
 
-    suspend fun doIo(context: Context, occurrence: RoutineOccurrence) = coroutineScope {
+    private suspend fun updateOccurrence(context: Context, occurrence: RoutineOccurrence) = coroutineScope {
         withContext(Dispatchers.IO) {
-            delay(Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS.toLong())
 
             //update Routines's Status and update the database
             val mDb = AppDatabase.getInstance(context)
             val currentOccurrence: RoutineOccurrence? = mDb?.dao?.getRoutineOccurrenceByAlarmId(occurrence.alarmId)
 
+            //update Routines's Status and update the database
             if (currentOccurrence?.status == Constants.Status.UNKNOWN.id) {
                 //If the user hasn't changed the status, toggle it
                 currentOccurrence.status = Constants.Status.PROGRESS.id
                 mDb.dao.updateOccurrence(currentOccurrence)
             }
+
+            delay(Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS.toLong())
+
+            //schedule for the next routine
+            val nextOccurrencePeriod = Helper.computeNextRoutineTime(currentOccurrence!!.freqId, currentOccurrence.occurrenceDate)
+            val nextOccurrence = RoutineOccurrence(currentOccurrence.routineId, Constants.Status.UNKNOWN.id,
+                    nextOccurrencePeriod, Prefs.getsInstance().nextAlarmId, currentOccurrence.name, currentOccurrence.desc, currentOccurrence.freqId)
+
+            //schedule next routine
+            AlarmHelper().execute(nextOccurrence, AlarmHelper.ACTION_SCHEDULE_ALARM)
+
 
             //start Simulated Job
             withContext(Dispatchers.Default) {

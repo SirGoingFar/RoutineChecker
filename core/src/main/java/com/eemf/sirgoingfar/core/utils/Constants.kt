@@ -12,17 +12,17 @@ object Constants {
     const val ARG_CURRENT_ROUTINE = "arg_current_routine"
 
     const val MINIMUM_PASS_MARK = 70
-    const val MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS = 5 * 60 * 1000 //notify when it's 5 minutes to a routine
+    /*const val MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS = 5 * 60 * 1000 //notify when it's 5 minutes to a routine
     const val WAITING_TIME_BEFORE_MARKED_AS_MISSED = 5 * 60 * 1000 //wait for 5 minutes after routine has expired before marking as MISSED routine
-    const val MAXIMUM_ROUTINE_DURATION_MILLIS = 15 * 60 * 1000 //all routine have a maximum execution time of 15 minutes
+    const val MAXIMUM_ROUTINE_DURATION_MILLIS = 15 * 60 * 1000 //all routine have a maximum execution time of 15 minutes*/
 
 
-    /* For test*/
-    /*const val MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS = 5 * 1000 //notify when it's 5 minutes to a routine
+    /* For test */
+    const val MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS = 5 * 1000 //notify when it's 5 minutes to a routine
     const val WAITING_TIME_BEFORE_MARKED_AS_MISSED = 2 * 1000 //wait for 5 minutes after routine has expired before marking as MISSED routine
-    const val MAXIMUM_ROUTINE_DURATION_MILLIS = 1 * 60 * 1000 //all routine have a maximum execution time of 15 minutes*/
+    const val MAXIMUM_ROUTINE_DURATION_MILLIS = 1 * 60 * 1000 //all routine have a maximum execution time of 15 minutes
 
-    const val TWELVE_HOURS_IN_MILLIS = 12 * 60 * 100
+    const val TWELVE_HOURS_IN_MILLIS = 12 * 60 * 60 * 1000
 
     enum class Status(val id: Int, val label: String) {
         UNKNOWN(0, "Unknown"),

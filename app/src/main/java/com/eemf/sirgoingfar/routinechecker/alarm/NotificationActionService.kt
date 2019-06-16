@@ -9,6 +9,7 @@ import com.eemf.sirgoingfar.core.utils.ParcelableUtil
 import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.AppDatabase
 import com.eemf.sirgoingfar.database.RoutineOccurrence
+import com.eemf.sirgoingfar.routinechecker.notification.NotificationHelper
 import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -61,6 +62,7 @@ class NotificationActionService : Service() {
                     //If the user hasn't changed the status, toggle it
                     currentOccurrence.status = Constants.Status.DONE.id
                     mDb.dao.updateOccurrence(currentOccurrence)
+                    NotificationHelper(this@NotificationActionService).removeNotification()
                 }
             }
         }

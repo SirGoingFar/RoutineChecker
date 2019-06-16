@@ -84,7 +84,7 @@ object Helper {
     }
 
     fun getUpNext(freqId: Int, date: Date?): String? {
-        return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, computeNextRoutineTime(freqId, date)!!.time)
+        return TimeUtil.getDuration(Calendar.getInstance().timeInMillis, date!!.time)
     }
 
     fun getDateString(date: Date?): String? {

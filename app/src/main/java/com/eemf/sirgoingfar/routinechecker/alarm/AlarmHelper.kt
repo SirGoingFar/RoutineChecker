@@ -8,7 +8,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.KITKAT
-import com.eemf.sirgoingfar.core.utils.*
+import com.eemf.sirgoingfar.core.utils.App
+import com.eemf.sirgoingfar.core.utils.Constants
+import com.eemf.sirgoingfar.core.utils.Helper
+import com.eemf.sirgoingfar.core.utils.ParcelableUtil
 import com.eemf.sirgoingfar.database.AppDatabase
 import com.eemf.sirgoingfar.database.Routine
 import com.eemf.sirgoingfar.database.RoutineOccurrence
@@ -17,7 +20,6 @@ import com.eemf.sirgoingfar.routinechecker.alarm.AlarmReceiver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.util.*
 
 class AlarmHelper {
 
@@ -67,11 +69,6 @@ class AlarmHelper {
 
         if (Helper.hasTimePassed(occurrence?.occurrenceDate!!)) {
             occurrence.occurrenceDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
-
-            if (occurrence.freqId == Frequency.HOURLY.id) {
-                val cal: Calendar = Calendar.getInstance()
-                cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
-            }
         }
 
         val pendingIntent = getPendingIntentFor(occurrence, isUpdate)
@@ -88,7 +85,8 @@ class AlarmHelper {
 
         //Update the routine date
         val routineInstance: Routine = mDb?.dao!!.getRoutineByIdAsync(occurrence.routineId)
-        routineInstance.nextRoutineDate = occurrence.occurrenceDate
+        routineInstance.date = occurrence.occurrenceDate
+        routineInstance.nextRoutineDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
         mDb.dao.updateRoutine(routineInstance)
     }
 

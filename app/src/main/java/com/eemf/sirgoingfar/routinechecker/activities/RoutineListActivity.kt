@@ -253,11 +253,12 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
     fun getNextUpRoutinelist(routineList: List<Routine>): ArrayList<NextUpRoutine> {
         val list: ArrayList<NextUpRoutine> = ArrayList()
-        val cal: Calendar = Calendar.getInstance()
 
         for (routine: Routine in routineList) {
-            if (routine.nextRoutineDate?.time!!.minus(cal.time.time) <= Constants.TWELVE_HOURS_IN_MILLIS) {
-                list.add(NextUpRoutine(routine.name, Helper.getUpNext(routine.freqId, routine.nextRoutineDate)))
+            val nextTime = routine.nextRoutineDate!!.time
+            val now = Calendar.getInstance().timeInMillis
+            if (nextTime > now && nextTime - now <= Constants.TWELVE_HOURS_IN_MILLIS) {
+                list.add(NextUpRoutine(routine.name, Helper.getUpNext(routine.freqId, routine.date)))
             }
         }
 
