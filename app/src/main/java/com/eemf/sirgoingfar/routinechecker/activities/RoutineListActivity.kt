@@ -68,7 +68,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
         fun refreshPage(routineList: List<Routine>) {
 
-            addOrRemoveMenuOption(routineList.isNotEmpty(), R.id.action_next_up)
+            addOrRemoveMenuOption(model.mNextUpList.isNotEmpty(), R.id.action_next_up)
 
             if (routineList.isEmpty()) {
                 mState.setNoData()
@@ -147,6 +147,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
                 mActivity.application, mActivity) as RoutineListActivityViewModel
 
         private var mRoutineList: List<Routine>? = null
+        lateinit var mNextUpList: ArrayList<NextUpRoutine>
 
         init {
 
@@ -156,7 +157,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
                     return@Observer
 
                 mRoutineList = it
-
+                mNextUpList = getNextUpRoutinelist(mRoutineList!!)
                 refreshPage(it)
 
                 if (isAddition) {
@@ -246,8 +247,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
     private fun openNextUpActivity() {
         val intent = Intent(this, NextUpActivity::class.java)
-        intent.putParcelableArrayListExtra(NextUpActivity.EXTRA_NEXT_UP_ROUTINE_LIST,
-                getNextUpRoutinelist(model.getCurrentRoutineList()))
+        intent.putParcelableArrayListExtra(NextUpActivity.EXTRA_NEXT_UP_ROUTINE_LIST, model.mNextUpList)
         startActivity(intent)
     }
 
