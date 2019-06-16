@@ -25,7 +25,7 @@ import java.util.*
 
 class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapter.OnStatusButtonClickListener, AddActivityDialogFragment.OnSaveOccurrence {
 
-    inner class ViewHolder(private val mContainer: View) : AbsViewHolder(mContainer) {
+    inner class ViewHolder(mContainer: View) : AbsViewHolder(mContainer) {
 
         private var mContext: RoutineDetailActivity = this@RoutineDetailActivity
         private var mState: State

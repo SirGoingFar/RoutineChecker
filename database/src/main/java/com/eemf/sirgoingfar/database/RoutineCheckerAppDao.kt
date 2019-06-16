@@ -18,7 +18,7 @@ interface RoutineCheckerAppDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun editRoutine(routine: Routine)
 
-    @Query("SELECT * FROM routine_occurrence WHERE routine_id = :id")
+    @Query("SELECT * FROM routine_occurrence WHERE routine_id = :id AND NOT status=0")
     fun getAllRoutineOccurrences(id: Int): LiveData<List<RoutineOccurrence>>
 
 }
