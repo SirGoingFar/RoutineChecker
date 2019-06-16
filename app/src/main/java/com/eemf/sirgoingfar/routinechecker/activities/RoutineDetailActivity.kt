@@ -59,7 +59,7 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
                     ?: mContext.getString(R.string.text_unavailable)
             pb_routine_progress.setProgressColor((ContextCompat.getColor(mContext, ColorUtil.getColor(mRoutine.id))))
             mContext.setSupportActionBar(toolbar)
-            toolbar.title = Helper.getNextRoutineOccurrenceText(mContext, mRoutine.freqId, mRoutine.lastRoutineDate)
+            toolbar.title = Helper.getNextRoutineOccurrenceText(mContext, mRoutine.freqId, mRoutine.nextRoutineDate)
                     ?: mContext.getString(R.string.text_unavailable)
         }
 

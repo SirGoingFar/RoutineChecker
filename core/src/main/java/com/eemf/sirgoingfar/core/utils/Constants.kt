@@ -12,15 +12,9 @@ object Constants {
     const val ARG_CURRENT_ROUTINE = "arg_current_routine"
 
     const val MINIMUM_PASS_MARK = 70
-    const val MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS = 5 * 1000 //notify when it's 5 minutes to a routine
-    const val MAXIMUM_ROUTINE_DURATION_MILLIS = 15 * 1000 //all routine have a maximum execution time of 15mins
-
-    /**
-     * job starts 5 minutes before the routine time,
-     * it lasts for 15 minutes AND
-     * the routine should be marked as MISSED 5 minutes after the job has ended
-     * */
-    const val SIMULATED_JOB_TIME = MAXIMUM_ROUTINE_DURATION_MILLIS + (2 * MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS)
+    const val MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS = 5 * 60 * 1000 //notify when it's 5 minutes to a routine
+    const val WAITING_TIME_BEFORE_MARKED_AS_MISSED = 5 * 60 * 1000 //wait for 5 minutes after routine has expired before marking as MISSED routine
+    const val MAXIMUM_ROUTINE_DURATION_MILLIS = 15 * 60 * 1000 //all routine have a maximum execution time of 15 minutes
 
     enum class Status(val id: Int, val label: String) {
         UNKNOWN(0, "Unknown"),

@@ -18,6 +18,7 @@ import com.eemf.sirgoingfar.routinechecker.notification.NotificationHelper
 import com.eemf.sirgoingfar.routinechecker.notification.NotificationParam
 import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -44,6 +45,7 @@ class AlarmReceiver : BroadcastReceiver() {
         param.btnTwoText = context.getString(R.string.text_push_btn_two_label)
         param.btnTwoPendingIntent = getRoutineUpdatePendingIntent(context, occurrence)
         param.bodyPendingIntent = getLaunchAppPendingIntent(context, occurrence.alarmId)
+        param.isAutoCancel = true
         notifHelper.notifyUser(param)
 
         //ring tone
@@ -51,6 +53,9 @@ class AlarmReceiver : BroadcastReceiver() {
 
         runBlocking {
             launch(Dispatchers.IO) {
+
+                delay(Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS.toLong())
+
                 //update Routines's Status and update the database
                 val mDb = AppDatabase.getInstance(context)
                 val currentOccurrence: RoutineOccurrence? = mDb?.dao?.getRoutineOccurrenceByAlarmId(occurrence.alarmId)
@@ -59,11 +64,6 @@ class AlarmReceiver : BroadcastReceiver() {
                     //If the user hasn't changed the status, toggle it
                     currentOccurrence.status = Constants.Status.PROGRESS.id
                     mDb.dao.updateOccurrence(currentOccurrence)
-
-                    //Update the routine date
-                    val routineInstance: Routine = mDb.dao.getRoutineByIdAsync(currentOccurrence.routineId)
-                    routineInstance.lastRoutineDate = currentOccurrence.occurrenceDate
-                    mDb.dao.editRoutine(routineInstance)
                 }
 
                 //start Simulated Job

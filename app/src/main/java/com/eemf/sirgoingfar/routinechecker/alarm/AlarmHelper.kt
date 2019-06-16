@@ -8,17 +8,16 @@ import android.net.Uri
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.KITKAT
-import com.eemf.sirgoingfar.core.utils.App
-import com.eemf.sirgoingfar.core.utils.Constants
-import com.eemf.sirgoingfar.core.utils.Helper
-import com.eemf.sirgoingfar.core.utils.ParcelableUtil
+import com.eemf.sirgoingfar.core.utils.*
 import com.eemf.sirgoingfar.database.AppDatabase
+import com.eemf.sirgoingfar.database.Routine
 import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.R
 import com.eemf.sirgoingfar.routinechecker.alarm.AlarmReceiver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.*
 
 class AlarmHelper {
 
@@ -66,8 +65,9 @@ class AlarmHelper {
 
     private fun schedule(occurrence: RoutineOccurrence?, isUpdate: Boolean) {
 
-        if (Helper.hasTimePassed(occurrence?.occurrenceDate!!))
+        if (Helper.hasTimePassed(occurrence?.occurrenceDate!!)) {
             occurrence.occurrenceDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
+        }
 
         val pendingIntent = getPendingIntentFor(occurrence, isUpdate)
         val alarmTime = (occurrence.occurrenceDate!!.time - Constants.MINIMUM_NOTIF_TIME_TO_START_TIME_MILLIS)
@@ -77,9 +77,14 @@ class AlarmHelper {
             else -> mAlarmManager?.set(AlarmManager.RTC_WAKEUP, alarmTime, pendingIntent)
         }
 
-        //create the Occurrrence
+        //create the Occurrence
         val mDb = AppDatabase.getInstance(mContext!!)
         mDb?.dao?.addOccurrence(occurrence)
+
+        //Update the routine date
+        val routineInstance: Routine = mDb?.dao!!.getRoutineByIdAsync(occurrence.routineId)
+        routineInstance.nextRoutineDate = occurrence.occurrenceDate
+        mDb.dao.updateRoutine(routineInstance)
     }
 
     private fun getPendingIntentFor(occurrence: RoutineOccurrence?, isUpdate: Boolean): PendingIntent {

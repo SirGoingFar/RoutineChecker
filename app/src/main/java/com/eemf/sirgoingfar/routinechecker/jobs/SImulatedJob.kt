@@ -16,9 +16,9 @@ class SimulatedJob(private val context: Context, private val occurrence: Routine
 
     suspend fun runJob() = runBlocking {
 
-        launch(Dispatchers.Default) {
+        launch(Dispatchers.IO) {
 
-            delay(Constants.SIMULATED_JOB_TIME.toLong())
+            delay((Constants.MAXIMUM_ROUTINE_DURATION_MILLIS + Constants.WAITING_TIME_BEFORE_MARKED_AS_MISSED).toLong())
 
             //update Routines's Status and update the database
             val mDb = AppDatabase.getInstance(context)

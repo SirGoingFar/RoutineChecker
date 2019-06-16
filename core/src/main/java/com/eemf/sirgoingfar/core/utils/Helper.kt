@@ -62,12 +62,15 @@ object Helper {
     }
 
     fun computeNextRoutineTime(freqId: Int, date: Date?): Date? {
-        val cal: Calendar = Calendar.getInstance()
+        var cal: Calendar = Calendar.getInstance()
         cal.isLenient = false
         cal.time = date
 
         when (freqId) {
-            Frequency.HOURLY.id -> cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
+            Frequency.HOURLY.id -> {
+                cal = Calendar.getInstance()
+                cal.set(Calendar.HOUR_OF_DAY, (cal.get(Calendar.HOUR_OF_DAY) + 1))
+            }
 
             Frequency.DAILY.id -> cal.set(Calendar.DAY_OF_MONTH, (cal.get(Calendar.DAY_OF_MONTH) + 1))
 
