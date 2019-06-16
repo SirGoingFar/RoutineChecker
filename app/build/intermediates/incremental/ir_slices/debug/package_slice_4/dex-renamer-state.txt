@@ -1,4 +1,0 @@
-#Sun Jun 16 12:14:04 WAT 2019
-base.0=/Users/SirGoingFar/Documents/Android_Projects/RoutineChecker/app/build/intermediates/transforms/dexMerger/debug/4
-path.0=classes.dex
-renamed.0=classes.dex
