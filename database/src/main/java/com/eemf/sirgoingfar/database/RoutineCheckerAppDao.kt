@@ -3,6 +3,11 @@ package com.eemf.sirgoingfar.database
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 
+/**
+ *
+ * This class contains the functions for Database access
+ *
+ * */
 @Dao
 interface RoutineCheckerAppDao {
 

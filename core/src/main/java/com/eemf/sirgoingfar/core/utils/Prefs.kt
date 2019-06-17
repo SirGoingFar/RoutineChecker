@@ -2,8 +2,14 @@ package com.eemf.sirgoingfar.core.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.media.AudioManager
 
+/**
+ *
+ * The class routes access to the App's SharedPreference
+ *
+ * @param context is the context of the Caller
+ *
+ * */
 class Prefs private constructor(context: Context) {
 
     private val APP_PREFS = "app_prefs"
