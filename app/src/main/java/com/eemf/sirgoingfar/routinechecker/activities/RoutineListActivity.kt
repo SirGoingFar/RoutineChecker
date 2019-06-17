@@ -165,7 +165,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
                     val addedRoutine = it[it.size - 1]
                     val occurrence = RoutineOccurrence(addedRoutine.id, Constants.Status.UNKNOWN.id, addedRoutine.date,
                             Prefs.getsInstance().nextAlarmId, addedRoutine.name, addedRoutine.desc, addedRoutine.freqId)
-                    AlarmHelper().execute(occurrence, AlarmHelper.ACTION_SCHEDULE_ALARM)
+                    AlarmHelper().execute(occurrence, AlarmHelper.ACTION_SCHEDULE_ALARM, true)
                 }
             })
 
