@@ -94,7 +94,7 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
                     doneCount++
             }
 
-            return (doneCount / list.size) * 100
+            return  (doneCount.toDouble().div(list.size) * 100).toInt()
         }
 
         inner class State : AbsViewState {
