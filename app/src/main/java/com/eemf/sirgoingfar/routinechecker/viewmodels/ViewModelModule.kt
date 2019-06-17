@@ -12,6 +12,15 @@ import java.lang.annotation.RetentionPolicy
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
+/**
+ *
+ * The class has the declaration of all the app's viewmodel classes that needs to be injected to function.
+ *
+ *The ViewModelModule is essential to avoid writing different Factories for all the ViewModels that need to be injected
+ *
+ * @constructor creates an instance of the ViewModelModule
+ *
+ * */
 @Module
 class ViewModelModule {
 

@@ -15,6 +15,11 @@ import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.R
 import java.util.*
 
+/**
+ * @property mContext is the context of the caller
+ * @property mListener is the action callback on the ViewHolder
+ * @constructor creates a new RoutineOccurrenceRecyclerViewAdapter
+ * */
 class RoutineOccurrenceRecyclerViewAdapter(private val mContext: Context, private val mListener: OnStatusButtonClickListener) :
         RecyclerView.Adapter<RoutineOccurrenceRecyclerViewAdapter.ViewHolder>() {
 
@@ -61,6 +66,11 @@ class RoutineOccurrenceRecyclerViewAdapter(private val mContext: Context, privat
         notifyDataSetChanged()
     }
 
+
+    /**
+     * @property itemView is a container of a Routine Occurrence card
+     * @constructor creates a ViewHolder instance of the RecyclerView
+     * */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @BindView(R.id.tv_occurrence_date)

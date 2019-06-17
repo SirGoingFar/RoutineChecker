@@ -31,7 +31,11 @@ import java.util.*
 class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRoutineClickListener,
         AddActivityDialogFragment.OnSaveOccurrence {
 
-    inner class ViewHolder(mContainer: View) : AbsViewHolder(mContainer) {
+    /**
+     *@property mContainer is the parent layout view
+     * @constructor creates an instance of the activity view
+     * */
+    inner class ViewHolder(private val mContainer: View) : AbsViewHolder(mContainer) {
 
         private lateinit var adapter: RoutineListRecyclerViewAdapter
         private var mState: State
@@ -132,15 +136,9 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
         }
     }
 
-    private fun deleteRoutine(index: Int) {
-        createAlertDialog(getString(R.string.text_delete_routine))
-                .setNegativeButton(getString(R.string.alert_dialog_negative_button_label)) { dialog, which -> refreshPage(model.getCurrentRoutineList()) }
-                .setPositiveButton(getString(R.string.alert_dialog_positive_button_label)) { dialog, which ->
-                    model.deleteRoutine(index)
-                }.create().show()
-    }
-
-
+    /**
+     * @constructor creates an instance of the model
+     * */
     inner class Model {
 
         private var mActivity: RoutineListActivity = this@RoutineListActivity
@@ -176,7 +174,7 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
             })
 
             //Observe for UI state change
-            mViewModel.getRequestStateObserver().observe(mActivity, android.arch.lifecycle.Observer {
+            mViewModel.getUiStateObserver().observe(mActivity, android.arch.lifecycle.Observer {
                 if (it == null)
                     return@Observer
 
@@ -261,9 +259,10 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
         val list: ArrayList<NextUpRoutine> = ArrayList()
 
         for (routine: Routine in routineList) {
-            val nextTime = routine.nextRoutineDate!!.time
+            val nextTime = routine.date!!.time
             val now = Calendar.getInstance().timeInMillis
-            if (nextTime > now && nextTime - now <= Constants.TWELVE_HOURS_IN_MILLIS) {
+            val diff = nextTime - now
+            if (diff > 0 && diff <= Constants.TWELVE_HOURS_IN_MILLIS) {
                 list.add(NextUpRoutine(routine.name, Helper.getUpNext(routine.freqId, routine.date)))
             }
         }
@@ -277,5 +276,13 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
 
     private fun refreshPage(routineList: List<Routine>) {
         views.refreshPage(routineList)
+    }
+
+    private fun deleteRoutine(index: Int) {
+        createAlertDialog(getString(R.string.text_delete_routine))
+                .setNegativeButton(getString(R.string.alert_dialog_negative_button_label)) { dialog, which -> refreshPage(model.getCurrentRoutineList()) }
+                .setPositiveButton(getString(R.string.alert_dialog_positive_button_label)) { dialog, which ->
+                    model.deleteRoutine(index)
+                }.create().show()
     }
 }

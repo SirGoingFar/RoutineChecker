@@ -19,6 +19,13 @@ import com.eemf.sirgoingfar.routinechecker.notification.NotificationParam
 import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 import kotlinx.coroutines.*
 
+/**
+ * This is the Alarm trigger listener for the scheduled routine occurrences
+ *
+ * It coordinates the actions to be performed when a routine occurrence goes off
+ *
+ * @constructor creates an instance of the AlarmReceiver
+ * */
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {

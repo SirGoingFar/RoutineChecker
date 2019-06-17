@@ -2,16 +2,33 @@ package com.eemf.sirgoingfar.routinechecker.jobs
 
 import android.content.Context
 import com.eemf.sirgoingfar.core.utils.Constants
-import com.eemf.sirgoingfar.core.utils.Helper
-import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.AppDatabase
 import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.notification.NotificationHelper
-import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 import kotlinx.coroutines.delay
 
+/**
+ *
+ * @property context is the job Caller context
+ * @property occurrence is the routine occurrence instance that's in process
+ *@constructor creates an instance of a SimulatedJob
+ *
+ * */
 class SimulatedJob(private val context: Context, private val occurrence: RoutineOccurrence) {
 
+    /**
+     *
+     * This function simulates a long running task that's taking place as an
+     * instance of a routine goes off.
+     *
+     * After a wait time (15 minutes for the routine + 5 minutes user's routines categorization window),
+     * it marks @param occurrence as a MISSED routine occurrence.
+     *
+     *
+     * Afterwards, it clears the notification tray.
+     *
+     *
+     * */
     suspend fun runJob() {
 
         //update Routines occurrence Status and update the database

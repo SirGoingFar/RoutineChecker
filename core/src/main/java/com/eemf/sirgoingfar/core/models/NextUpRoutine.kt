@@ -3,6 +3,15 @@ package com.eemf.sirgoingfar.core.models
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+ *
+ * @property name is the name of the Routine
+ *
+ * @property estimate is the estimated elapsed time (in String) of the next occurrence of the Routine
+ *
+ * @constructor creates an instance of the NextUpRoutine
+ *
+ * */
 class NextUpRoutine() : Parcelable {
 
     var name: String? = null

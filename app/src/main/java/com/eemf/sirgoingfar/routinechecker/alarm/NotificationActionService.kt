@@ -16,6 +16,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ *
+ * This class handles the notification action buttons click actions
+ *
+ *
+ * @constructor creates an instance of the NotificationActionService
+ *
+ * */
 class NotificationActionService : Service() {
 
     private var pref: Prefs? = null
@@ -51,6 +59,15 @@ class NotificationActionService : Service() {
         return START_NOT_STICKY
     }
 
+    /**
+     *
+     * @param occurrence is the occurrence instance of a Routine that is currently in process
+     *
+     * The function handles the DONE action button click:
+     * it marks the current routine occurrence as DONE
+     *
+     *
+     * */
     private suspend fun updateRoutineOccurrence(occurrence: RoutineOccurrence) {
         val job = GlobalScope.launch {
             withContext(Dispatchers.IO) {

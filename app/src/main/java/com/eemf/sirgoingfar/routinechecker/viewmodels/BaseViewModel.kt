@@ -6,25 +6,34 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import com.eemf.sirgoingfar.core.utils.App
 import com.eemf.sirgoingfar.core.utils.AppExecutors
-import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.AppDatabase
-import com.eemf.sirgoingfar.timely.alarm.AlarmHelper
 
+/**
+ *
+ * This is the Base Class for the Application ViewModels
+ *
+ * @property mApplication is the Application instance of the Caller or the LifeCycle owner
+ * that's instantiating the ViewModel
+ *
+ * @property mDb is the app database reference
+ * @property mExecutors is the instance of the Threading provider class
+ * @property uiState gives the current state of the UI
+ *
+ *
+ * */
 open class BaseViewModel(mApplication: Application) : AndroidViewModel(mApplication) {
 
     protected var mDb: AppDatabase? = AppDatabase.getInstance(mApplication)
     protected var mExecutors: AppExecutors? = App.getsExecutors()
-    protected var mAlarmHelper: AlarmHelper = AlarmHelper()
-    protected var mPref: Prefs = Prefs.getsInstance()
 
-    private val requestState = MutableLiveData<Int>()
+    private val uiState = MutableLiveData<Int>()
 
-    protected fun setRequestState(state: Int) {
-        requestState.postValue(state)
+    protected fun setUiState(state: Int) {
+        uiState.postValue(state)
     }
 
-    fun getRequestStateObserver(): LiveData<Int> {
-        return requestState
+    fun getUiStateObserver(): LiveData<Int> {
+        return uiState
     }
 
     companion object {

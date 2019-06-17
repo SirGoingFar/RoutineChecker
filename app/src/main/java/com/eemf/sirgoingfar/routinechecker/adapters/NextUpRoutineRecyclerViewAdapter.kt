@@ -11,6 +11,10 @@ import butterknife.ButterKnife
 import com.eemf.sirgoingfar.core.models.NextUpRoutine
 import com.eemf.sirgoingfar.routinechecker.R
 
+/**
+ * @property routineList is a list of NextUpRoutine objects
+ * @constructor creates an instance of the NextUpRecyclerViewAdapter
+ * */
 class NextUpRoutineRecyclerViewAdapter(private val routineList: ArrayList<Parcelable>) : RecyclerView.Adapter<NextUpRoutineRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(container: ViewGroup, viewType: Int): ViewHolder {
@@ -28,6 +32,10 @@ class NextUpRoutineRecyclerViewAdapter(private val routineList: ArrayList<Parcel
         viewholder.tvRoutineEstimate?.text = currentItem.estimate
     }
 
+    /**
+     * @property itemView is a container of a NextUpRoutine card
+     * @constructor creates a RecyclerView ViewHolder
+     * */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @BindView(R.id.tv_routine_name)
