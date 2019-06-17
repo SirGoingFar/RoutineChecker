@@ -7,6 +7,21 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import com.eemf.sirgoingfar.database.Routine
 
+/**
+ *
+ * This is the ViewModel for the RoutineList page
+ *
+ * @property mApplication is the Application instance of the Caller or the LifeCycle owner
+ * that's instantiating the ViewModel
+ *
+ * @property lifecycleOwner is the instance of the ViewModel lifecycle owner
+ *
+ * @property mRoutineListMutableLiveData is the livedata object of the list of
+ * Routines
+ *
+ * @property mRoutineMutableLiveData is the livedata object of a requested by Id Routine
+ *
+ * */
 class RoutineListActivityViewModel(mApplication: Application, private val lifecycleOwner: LifecycleOwner) : BaseViewModel(mApplication) {
 
     private val mRoutineMutableLiveData: MutableLiveData<Routine> = MutableLiveData()
@@ -21,17 +36,17 @@ class RoutineListActivityViewModel(mApplication: Application, private val lifecy
     }
 
     private fun setRoutine(routine: Routine?) {
-        setRequestState(STATE_LOADED)
+        setUiState(STATE_LOADED)
         mRoutineMutableLiveData.postValue(routine)
     }
 
     private fun setRoutineList(routineList: List<Routine>?) {
-        setRequestState(STATE_LOADED)
+        setUiState(STATE_LOADED)
         mRoutineListMutableLiveData.postValue(routineList)
     }
 
     fun getRoutineById(routineId: Int) {
-        setRequestState(STATE_LOADING)
+        setUiState(STATE_LOADING)
         mExecutors?.diskIO()?.execute {
             mDb?.dao?.getRoutineById(routineId)?.observe(lifecycleOwner, Observer {
                 setRoutine(it)
@@ -40,7 +55,7 @@ class RoutineListActivityViewModel(mApplication: Application, private val lifecy
     }
 
     fun getAllRoutines() {
-        setRequestState(STATE_LOADING)
+        setUiState(STATE_LOADING)
         mExecutors?.diskIO()?.execute {
             mDb?.dao?.getAllRoutine()?.observe(lifecycleOwner, Observer {
                 setRoutineList(it)

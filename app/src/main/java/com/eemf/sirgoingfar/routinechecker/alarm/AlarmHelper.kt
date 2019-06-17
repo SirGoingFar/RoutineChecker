@@ -22,6 +22,15 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ *
+ * This class handles the scheduling (creating, removing and updating) of routine occurrence instances.
+ *
+ * It is trigger when a new routine is added to the Routine List
+ *
+ * @constructor creates an instance of the AlarmHelper
+ *
+ * */
 class AlarmHelper {
 
     private var mAlarmManager: AlarmManager? = null
@@ -36,6 +45,10 @@ class AlarmHelper {
                     ?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
 
+    /**
+     * @param occurrence is an instance of the Routine next to be scheduled/removed/updated
+     * @param action is the unique identifier for the operation to be performed on the routine occurrence
+     * */
     fun execute(occurrence: RoutineOccurrence?, action: Int) {
         GlobalScope.launch(Dispatchers.Default) {
             withContext(Dispatchers.IO) {

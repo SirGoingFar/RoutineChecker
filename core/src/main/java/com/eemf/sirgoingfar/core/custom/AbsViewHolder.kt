@@ -5,6 +5,11 @@ import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.view.View
 
+/**
+ *
+ * The class is the Base class for all the App's ViewHolders
+ *
+ * */
 abstract class AbsViewHolder {
 
     protected lateinit var fragment: Fragment

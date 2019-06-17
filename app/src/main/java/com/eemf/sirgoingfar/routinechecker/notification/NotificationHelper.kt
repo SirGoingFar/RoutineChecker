@@ -13,6 +13,17 @@ import android.text.TextUtils
 import com.eemf.sirgoingfar.core.utils.App
 import com.eemf.sirgoingfar.routinechecker.R
 
+/**
+ *
+ * This class is a Helper class for setting the Notification Properties and sending the Notification
+ * to the device Notification tray.
+ *
+ *
+ * @property context is the caller context
+ * @constructor creates an instance of the NotificationHelper
+ *
+ *
+ * */
 class NotificationHelper(private val context: Context) {
 
     private var notificationManager: NotificationManager? = null

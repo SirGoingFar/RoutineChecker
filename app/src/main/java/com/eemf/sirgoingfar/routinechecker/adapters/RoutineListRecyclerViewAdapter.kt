@@ -14,6 +14,10 @@ import com.eemf.sirgoingfar.database.Routine
 import com.eemf.sirgoingfar.routinechecker.R
 import java.util.*
 
+/**
+ * @property mContext is the context of the caller
+ * @property mListener is the action callback listener
+ * */
 class RoutineListRecyclerViewAdapter(private val mContext: Context, private val mListener: OnRoutineClickListener) :
         RecyclerView.Adapter<RoutineListRecyclerViewAdapter.ViewHolder>() {
 
@@ -45,6 +49,11 @@ class RoutineListRecyclerViewAdapter(private val mContext: Context, private val 
         notifyDataSetChanged()
     }
 
+
+    /**
+     * @property itemView is a container of a Routine card
+     * @constructor creates a RecyclerView ViewHolder
+     * */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         @BindView(R.id.tv_routine_name)

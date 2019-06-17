@@ -8,6 +8,11 @@ import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import com.eemf.sirgoingfar.routinechecker.R
 
+/**
+ *
+ * @constructor creates an object of NotificationParam - a notification property
+ *
+ * */
 class NotificationParam {
 
     var id: Int = 0

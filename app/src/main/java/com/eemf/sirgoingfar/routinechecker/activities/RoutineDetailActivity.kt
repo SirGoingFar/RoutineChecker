@@ -23,9 +23,16 @@ import com.eemf.sirgoingfar.routinechecker.viewmodels.ViewModelModule
 import kotlinx.android.synthetic.main.activity_routine_detail.*
 import java.util.*
 
+/**
+ * RoutineDetailActivity gives the general overview of a routine
+ * */
 class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapter.OnStatusButtonClickListener, AddActivityDialogFragment.OnSaveOccurrence {
 
-    inner class ViewHolder(mContainer: View) : AbsViewHolder(mContainer) {
+    /**
+     *@property mContainer is the parent layout view
+     * @constructor creates an instance of the activity view
+     * */
+    inner class ViewHolder(private val mContainer: View) : AbsViewHolder(mContainer) {
 
         private var mContext: RoutineDetailActivity = this@RoutineDetailActivity
         private var mState: State
@@ -135,6 +142,10 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
         }
     }
 
+
+    /**
+     * @constructor creates an instance of the model
+     * */
     inner class Model {
 
         private var mActivity: RoutineDetailActivity = this@RoutineDetailActivity
@@ -164,7 +175,7 @@ class RoutineDetailActivity : BaseActivity(), RoutineOccurrenceRecyclerViewAdapt
             })
 
             //Observe for UI state change
-            mOccurrenceViewModel.getRequestStateObserver().observe(mActivity, Observer {
+            mOccurrenceViewModel.getUiStateObserver().observe(mActivity, Observer {
                 if (it == null)
                     return@Observer
 
