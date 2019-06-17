@@ -13,6 +13,7 @@ import butterknife.ButterKnife
 import com.eemf.sirgoingfar.core.custom.AbsViewHolder
 import com.eemf.sirgoingfar.core.models.NextUpRoutine
 import com.eemf.sirgoingfar.core.utils.Constants
+import com.eemf.sirgoingfar.core.utils.Frequency
 import com.eemf.sirgoingfar.core.utils.Helper
 import com.eemf.sirgoingfar.core.utils.Prefs
 import com.eemf.sirgoingfar.database.Routine
@@ -163,9 +164,14 @@ class RoutineListActivity : BaseActivity(), RoutineListRecyclerViewAdapter.OnRou
                 if (isAddition) {
                     isAddition = false
                     val addedRoutine = it[it.size - 1]
-                    val occurrence = RoutineOccurrence(addedRoutine.id, Constants.Status.UNKNOWN.id, addedRoutine.date,
+                    var date = addedRoutine.date
+
+                    if (addedRoutine.freqId != Frequency.HOURLY.id)
+                        date = Helper.computeNextRoutineTime(addedRoutine.freqId, addedRoutine.date)
+
+                    val occurrence = RoutineOccurrence(addedRoutine.id, Constants.Status.UNKNOWN.id, date,
                             Prefs.getsInstance().nextAlarmId, addedRoutine.name, addedRoutine.desc, addedRoutine.freqId)
-                    AlarmHelper().execute(occurrence, AlarmHelper.ACTION_SCHEDULE_ALARM, true)
+                    AlarmHelper().execute(occurrence, AlarmHelper.ACTION_SCHEDULE_ALARM)
                 }
             })
 
