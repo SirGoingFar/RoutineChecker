@@ -35,14 +35,14 @@ class AlarmHelper {
                     ?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
 
-    fun execute(occurrence: RoutineOccurrence?, action: Int, isFirsOccurrence: Boolean) {
+    fun execute(occurrence: RoutineOccurrence?, action: Int, isFirstOccurrence: Boolean) {
         runBlocking {
             launch(Dispatchers.IO) {
                 if (action < 0)
                     throw IllegalArgumentException(mContext?.getString(R.string.text_invalid_action_identifier))
 
                 when (action) {
-                    ACTION_SCHEDULE_ALARM -> schedule(occurrence, false, isFirsOccurrence)
+                    ACTION_SCHEDULE_ALARM -> schedule(occurrence, false, isFirstOccurrence)
 
                     ACTION_UPDATE_ALARM -> update(occurrence)
 

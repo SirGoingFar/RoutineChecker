@@ -38,7 +38,7 @@ class App : MultiDexApplication() {
         val NOTIF_CHANNEL_ID = "channel_general"
         val NOTIF_CHANNEL_NAME = "General"
         val NOTIF_ID = 123
-        val APP_GROUP_KEY = "com.eemf.sirgoiingfar.android"
+        val APP_GROUP_KEY = "com.eemf.sirgoingfar.android"
 
         private var sInstance: App? = null
         private var sExecutors: AppExecutors? = null
