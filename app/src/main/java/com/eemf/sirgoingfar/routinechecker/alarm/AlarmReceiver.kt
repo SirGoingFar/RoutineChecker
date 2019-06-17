@@ -74,7 +74,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
             //start Simulated Job
             withContext(Dispatchers.Default) {
-                SimulatedJob(context, currentOccurrence!!).runJob()
+                SimulatedJob(context, currentOccurrence).runJob()
             }
         }
     }
