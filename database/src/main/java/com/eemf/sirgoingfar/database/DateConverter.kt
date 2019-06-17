@@ -1,9 +1,13 @@
 package com.eemf.sirgoingfar.database
 
 import android.arch.persistence.room.TypeConverter
+import java.util.*
 
-import java.util.Date
-
+/**
+ *
+ * The class enables Room to convert Date field(s) in the Entity classes to Long and vice versa
+ *
+ * */
 class DateConverter {
 
     @TypeConverter

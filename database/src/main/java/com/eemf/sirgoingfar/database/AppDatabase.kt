@@ -6,6 +6,11 @@ import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
 
+/**
+ *
+ * This class handles the initialization of the Room Database
+ *
+ * */
 @Database(entities = [Routine::class, RoutineOccurrence::class], version = 1, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {

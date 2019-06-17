@@ -1,11 +1,16 @@
 package com.eemf.sirgoingfar.core.utils
 
 import android.content.Context
-import android.media.MediaPlayer
-import android.media.RingtoneManager
 import android.support.multidex.MultiDexApplication
 import java.util.*
 
+/**
+ *
+ * The App class is the point of entry/instantiation of the App
+ *
+ * App-wide static objects are initialized here
+ *
+ * */
 class App : MultiDexApplication() {
 
     val appContext: Context
@@ -28,9 +33,6 @@ class App : MultiDexApplication() {
 
         //init color codes
         colorCodes = ColorUtil.getColorCode(this)
-
-        //init Media Player
-        mediaPlayer = MediaPlayer.create(this, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
     }
 
     companion object {
@@ -42,9 +44,6 @@ class App : MultiDexApplication() {
 
         private var sInstance: App? = null
         private var sExecutors: AppExecutors? = null
-        var mediaPlayer: MediaPlayer? = null
-
-            private set
         var colorCodes: ArrayList<Int>? = null
             private set
 
