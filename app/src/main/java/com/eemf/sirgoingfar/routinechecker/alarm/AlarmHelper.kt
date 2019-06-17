@@ -18,8 +18,9 @@ import com.eemf.sirgoingfar.database.RoutineOccurrence
 import com.eemf.sirgoingfar.routinechecker.R
 import com.eemf.sirgoingfar.routinechecker.alarm.AlarmReceiver
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class AlarmHelper {
 
@@ -35,14 +36,14 @@ class AlarmHelper {
                     ?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
 
-    fun execute(occurrence: RoutineOccurrence?, action: Int, isFirstOccurrence: Boolean) {
-        runBlocking {
-            launch(Dispatchers.IO) {
+    fun execute(occurrence: RoutineOccurrence?, action: Int) {
+        GlobalScope.launch(Dispatchers.Default) {
+            withContext(Dispatchers.IO) {
                 if (action < 0)
                     throw IllegalArgumentException(mContext?.getString(R.string.text_invalid_action_identifier))
 
                 when (action) {
-                    ACTION_SCHEDULE_ALARM -> schedule(occurrence, false, isFirstOccurrence)
+                    ACTION_SCHEDULE_ALARM -> schedule(occurrence, false)
 
                     ACTION_UPDATE_ALARM -> update(occurrence)
 
@@ -62,10 +63,10 @@ class AlarmHelper {
         delete(occurrence)
 
         //re-schedule
-        schedule(occurrence, true, false)
+        schedule(occurrence, true)
     }
 
-    private fun schedule(occurrence: RoutineOccurrence?, isUpdate: Boolean, isFirstOccurrence: Boolean) {
+    private fun schedule(occurrence: RoutineOccurrence?, isUpdate: Boolean) {
 
         if (Helper.hasTimePassed(occurrence?.occurrenceDate!!)) {
             occurrence.occurrenceDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
@@ -85,10 +86,7 @@ class AlarmHelper {
 
         //Update the routine date
         val routineInstance: Routine = mDb?.dao!!.getRoutineByIdAsync(occurrence.routineId)
-        if (isFirstOccurrence)
-            routineInstance.date = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
-        else
-            routineInstance.date = occurrence.occurrenceDate
+        routineInstance.date = occurrence.occurrenceDate
 
         mDb.dao.updateRoutine(routineInstance)
     }
