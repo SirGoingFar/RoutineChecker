@@ -69,7 +69,7 @@ class AlarmReceiver : BroadcastReceiver() {
                     nextOccurrencePeriod, Prefs.getsInstance().nextAlarmId, currentOccurrence.name, currentOccurrence.desc, currentOccurrence.freqId)
 
             //schedule next routine
-            AlarmHelper().execute(nextOccurrence, AlarmHelper.ACTION_SCHEDULE_ALARM)
+            AlarmHelper().execute(nextOccurrence, AlarmHelper.ACTION_SCHEDULE_ALARM, false)
 
 
             //start Simulated Job

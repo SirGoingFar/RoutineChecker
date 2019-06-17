@@ -35,14 +35,14 @@ class AlarmHelper {
                     ?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
 
-    fun execute(occurrence: RoutineOccurrence?, action: Int) {
+    fun execute(occurrence: RoutineOccurrence?, action: Int, isFirsOccurrence: Boolean) {
         runBlocking {
             launch(Dispatchers.IO) {
                 if (action < 0)
                     throw IllegalArgumentException(mContext?.getString(R.string.text_invalid_action_identifier))
 
                 when (action) {
-                    ACTION_SCHEDULE_ALARM -> schedule(occurrence, false)
+                    ACTION_SCHEDULE_ALARM -> schedule(occurrence, false, isFirsOccurrence)
 
                     ACTION_UPDATE_ALARM -> update(occurrence)
 
@@ -62,10 +62,10 @@ class AlarmHelper {
         delete(occurrence)
 
         //re-schedule
-        schedule(occurrence, true)
+        schedule(occurrence, true, false)
     }
 
-    private fun schedule(occurrence: RoutineOccurrence?, isUpdate: Boolean) {
+    private fun schedule(occurrence: RoutineOccurrence?, isUpdate: Boolean, isFirstOccurrence: Boolean) {
 
         if (Helper.hasTimePassed(occurrence?.occurrenceDate!!)) {
             occurrence.occurrenceDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
@@ -85,8 +85,11 @@ class AlarmHelper {
 
         //Update the routine date
         val routineInstance: Routine = mDb?.dao!!.getRoutineByIdAsync(occurrence.routineId)
-        routineInstance.date = occurrence.occurrenceDate
-        routineInstance.nextRoutineDate = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
+        if (isFirstOccurrence)
+            routineInstance.date = Helper.computeNextRoutineTime(occurrence.freqId, occurrence.occurrenceDate)
+        else
+            routineInstance.date = occurrence.occurrenceDate
+
         mDb.dao.updateRoutine(routineInstance)
     }
 
